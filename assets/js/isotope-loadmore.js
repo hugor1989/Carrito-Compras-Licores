@@ -1,6 +1,6 @@
 /*===================================
 Author       : Bestwebcreator.
-Template Name: Shopwise - eCommerce Bootstrap 4 HTML Template
+Template Name: Shopwise - eCommerce Bootstrap 5 HTML Template
 Version      : 1.0
 ===================================*/
 

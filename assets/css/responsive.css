@@ -10,6 +10,11 @@
     margin-left: auto;
 }
 }
+@media only screen and (min-width: 1400px) {
+	.container {
+		max-width: 1140px;
+	}
+}
 
 /* -------------------------------------------------
   (max-width: 1250px)
@@ -1439,15 +1444,15 @@ blockquote p {
 .categories_btn i {
 	margin-right: 0;
 }
-.indicators_style1 {
+.carousel .indicators_style1 {
 	margin-bottom: 5px;
 }
-.indicators_style1 li {
+.carousel .indicators_style1 li {
 	width: 7px;
 	height: 7px;
 	margin: 6px;
 }
-.indicators_style2 li {
+.carousel .indicators_style2 li {
 	width: 6px;
 	height: 6px;
 }

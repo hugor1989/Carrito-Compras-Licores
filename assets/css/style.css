@@ -1,6 +1,6 @@
 /*=========================================================
 Author       : Bestwebcreator.
-Template Name: Shopwise - eCommerce Bootstrap 4 HTML Template
+Template Name: Shopwise - eCommerce Bootstrap 5 HTML Template
 Version      : 1.3
 ==============================================================*/
 
@@ -170,6 +170,10 @@ div.banner_large_pad {
 }
 button:focus {
 	outline:none;
+}
+button:focus:not(:focus-visible) {
+	outline: 0;
+	box-shadow: none;
 }
 .border-2 {
 	border-width: 2px !important;
@@ -1037,6 +1041,7 @@ button:focus {
 	padding: 10px 0;
 	vertical-align: top;
 	margin: 0;
+	display:inline-block;
 }
 .dark_skin .logo_light, .dark_skin .logo_default,
 .light_skin .logo_default, .light_skin .logo_dark,
@@ -2721,12 +2726,12 @@ input.text {
 	background-color: #FF324D;
 	color: #fff;
 }
-.indicators_style1,
-.indicators_style2,
-.indicators_style3 {
+.carousel .indicators_style1,
+.carousel .indicators_style2,
+.carousel .indicators_style3 {
 	margin-bottom: 15px;
 }
-.indicators_style1 li {
+.carousel .indicators_style1 li {
 	width: 10px;
 	height: 10px;
 	background-color: #333;
@@ -2734,7 +2739,7 @@ input.text {
 	margin: 8px;
 	position: relative;
 }
-.indicators_style1 li::before {
+.carousel .indicators_style1 li::before {
 	content: "";
 	position: absolute;
 	left: 0;
@@ -2744,7 +2749,7 @@ input.text {
 	border: 2px solid #333;
 	margin: -4px;
 }
-.indicators_style2 li {
+.carousel .indicators_style2 li {
 	background-color: #333;
 	border-radius: 100%;
 	width: 10px;
@@ -2754,7 +2759,7 @@ input.text {
 	margin: 8px;
 	position: relative;
 }
-.indicators_style2 li::before {
+.carousel .indicators_style2 li::before {
 	content: "";
 	position: absolute;
 	border-radius: 100%;
@@ -2765,7 +2770,7 @@ input.text {
 	border: 2px solid #333;
 	margin: -4px;
 }
-.indicators_style3 li {
+.carousel .indicators_style3 li {
 	background-color: #333;
 	border-radius: 100%;
 	width: 10px;
@@ -2775,15 +2780,15 @@ input.text {
 	margin: 5px;
 	position: relative;
 }
-.indicators_style1 li.active,
-.indicators_style2 li.active {
+.carousel .indicators_style1 li.active,
+.carousel .indicators_style2 li.active {
 	background-color: #FF324D;
 }
-.indicators_style2 li.active:before,
-.indicators_style1 li.active:before {
+.carousel .indicators_style2 li.active:before,
+.carousel .indicators_style1 li.active:before {
 	border-color: #FF324D;
 }
-.indicators_style4 li {
+.carousel .indicators_style4 li {
 	background-color: #fff;
 	border-radius: 100%;
 	width: 15px;
@@ -2893,7 +2898,7 @@ input.text {
 	transform: translateY(-50%);
 	bottom: auto;
 }
-.indicators_style2.vertical_center_right li {
+.carousel .indicators_style2.vertical_center_right li {
 	margin: 15px 0;
 }
 .banner_content_border {
@@ -7140,6 +7145,10 @@ blockquote p:last-child {
 	text-shadow: none;
 	width: 40px;
 	height: 40px;
+	padding: 0;
+	box-shadow: none;
+	background-color: transparent;
+	border: 0;
 }
 .subscribe_popup .close i {
 	font-size: 40px;
@@ -7210,3 +7219,33 @@ blockquote p:last-child {
 /*===================================*
   24.END ELEMENT DESIGN
 *===================================*/
+
+/*Migrating to v5*/
+.btn-block {
+    display: block;
+    width: 100%;
+}
+.nav-link {
+    color: #292b2c;
+}
+.nav-link:focus, .nav-link:hover {
+	color: #FF324D;
+}
+.input-group-append {
+    margin-left: -1px;
+}
+.input-group-append, .input-group-prepend {
+    display: -ms-flexbox;
+    display: flex;
+}
+.input-group > .input-group-append > .btn, .input-group > .input-group-append > .input-group-text, .input-group > .input-group-prepend:first-child > .btn:not(:first-child), .input-group > .input-group-prepend:first-child > .input-group-text:not(:first-child), .input-group > .input-group-prepend:not(:first-child) > .btn, .input-group > .input-group-prepend:not(:first-child) > .input-group-text {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.dropdown-menu {
+	left:0;
+}
+.input-group > .input-group-append > .btn {
+	height: 100%;
+}
