@@ -69,7 +69,7 @@
                     <div class="col-sm-7">
                         <div class="popup_content">
                             <div class="popup-text">
-                                <div class="heading_s4">
+                                <div class="heading_s1">
                                     <h4>Subscribe and Get 25% Discount!</h4>
                                 </div>
                                 <p>Subscribe to the newsletter to receive updates about new products.</p>
@@ -148,10 +148,10 @@
                 <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                     <ul class="navbar-nav">
                         <li class="dropdown">
-                            <a data-bs-toggle="dropdown" class="nav-link dropdown-toggle" href="#">Home</a>
+                            <a data-bs-toggle="dropdown" class="nav-link dropdown-toggle active" href="#">Home</a>
                             <div class="dropdown-menu">
                                 <ul> 
-                                    <li><a class="dropdown-item nav-link nav_item" href="index.html">Fashion 1</a></li>
+                                    <li><a class="dropdown-item nav-link nav_item active" href="index.html">Fashion 1</a></li>
                                     <li><a class="dropdown-item nav-link nav_item" href="index-2.html">Fashion 2</a></li>
                                     <li><a class="dropdown-item nav-link nav_item" href="index-3.html">Furniture 1</a></li>
                                     <li><a class="dropdown-item nav-link nav_item" href="index-4.html">Furniture 2</a></li>
@@ -253,15 +253,15 @@
                                 </div>
                             </div>
                         </li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle nav-link active" href="#" data-bs-toggle="dropdown">Blog</a>
+                  <!--       <li class="dropdown">
+                            <a class="dropdown-toggle nav-link" href="#" data-bs-toggle="dropdown">Blog</a>
                             <div class="dropdown-menu dropdown-reverse">
                                 <ul>
                                     <li>
                                         <a class="dropdown-item menu-link dropdown-toggler" href="#">Grids</a>
                                         <div class="dropdown-menu">
                                             <ul> 
-                                                <li><a class="dropdown-item nav-link nav_item active" href="blog-three-columns.html">3 columns</a></li>
+                                                <li><a class="dropdown-item nav-link nav_item" href="blog-three-columns.html">3 columns</a></li>
                                             	<li><a class="dropdown-item nav-link nav_item" href="blog-four-columns.html">4 columns</a></li> 
                                             	<li><a class="dropdown-item nav-link nav_item" href="blog-left-sidebar.html">Left Sidebar</a></li> 
                                             	<li><a class="dropdown-item nav-link nav_item" href="blog-right-sidebar.html">right Sidebar</a></li>
@@ -304,7 +304,7 @@
                                     </li>
                                 </ul>
                             </div>
-                        </li>
+                        </li> -->
                         <li class="dropdown dropdown-mega-menu">
                             <a class="dropdown-toggle nav-link" href="#" data-bs-toggle="dropdown">Shop</a>
                             <div class="dropdown-menu">
@@ -392,7 +392,7 @@
                             </ul>
                             <div class="cart_footer">
                                 <p class="cart_total"><strong>Subtotal:</strong> <span class="cart_price"> <span class="price_symbole">$</span></span>159.00</p>
-                                <p class="cart_buttons"><a href="#" class="btn btn-fill-line view-cart">View Cart</a><a href="#" class="btn btn-fill-out checkout">Checkout</a></p>
+                                <p class="cart_buttons"><a href="#" class="btn btn-fill-line rounded-0 view-cart">View Cart</a><a href="#" class="btn btn-fill-out rounded-0 checkout">Checkout</a></p>
                             </div>
                         </div>
                     </li>
@@ -402,390 +402,3 @@
     </div>
 </header>
 <!-- END HEADER -->
-
-<!-- START SECTION BREADCRUMB -->
-<div class="breadcrumb_section bg_gray page-title-mini">
-    <div class="container"><!-- STRART CONTAINER -->
-        <div class="row align-items-center">
-        	<div class="col-md-6">
-                <div class="page-title">
-            		<h1>Blog three columns</h1>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <ol class="breadcrumb justify-content-md-end">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item"><a href="#">Blog</a></li>
-                    <li class="breadcrumb-item active">Blog three columns</li>
-                </ol>
-            </div>
-        </div>
-    </div><!-- END CONTAINER-->
-</div>
-<!-- END SECTION BREADCRUMB -->
-
-<!-- START MAIN CONTENT -->
-<div class="main_content">
-
-<!-- START SECTION BLOG -->
-<div class="section">
-	<div class="container">
-        <div class="row">
-            <div class="col-lg-4 col-md-6">
-                <div class="blog_post blog_style2 box_shadow1">
-                    <div class="blog_img">
-                        <a href="blog-single.html">
-                            <img src="assets/images/blog_small_img1.jpg" alt="blog_small_img1">
-                        </a>
-                    </div>
-                    <div class="blog_content bg-white">
-                        <div class="blog_text">
-                            <h5 class="blog_title"><a href="blog-single.html">But I must explain to you how all this mistaken idea</a></h5>
-                            <ul class="list_none blog_meta">
-                                <li><a href="#"><i class="ti-calendar"></i> April 14, 2018</a></li>
-                                <li><a href="#"><i class="ti-comments"></i> 10</a></li>
-                            </ul>
-                            <p>If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="blog_post blog_style2 box_shadow1">
-                    <div class="blog_img">
-                        <a href="blog-single.html">
-                            <img src="assets/images/blog_small_img2.jpg" alt="blog_small_img2">
-                        </a>
-                    </div>
-                    <div class="blog_content bg-white">
-                        <div class="blog_text">
-                            <h5 class="blog_title"><a href="blog-single.html">On the other hand we provide denounce with righteous</a></h5>
-                            <ul class="list_none blog_meta">
-                                <li><a href="#"><i class="ti-calendar"></i> April 14, 2018</a></li>
-                                <li><a href="#"><i class="ti-comments"></i> 12</a></li>
-                            </ul>
-                            <p>If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="blog_post blog_style2 box_shadow1">
-                    <div class="blog_img">
-                        <a href="blog-single.html">
-                            <img src="assets/images/blog_small_img3.jpg" alt="blog_small_img3">
-                        </a>
-                    </div>
-                    <div class="blog_content bg-white">
-                        <div class="blog_text">
-                            <h5 class="blog_title"><a href="blog-single.html">Why is a ticket to Lagos so expensive?</a></h5>
-                            <ul class="list_none blog_meta">
-                                <li><a href="#"><i class="ti-calendar"></i> April 14, 2018</a></li>
-                                <li><a href="#"><i class="ti-comments"></i> 14</a></li>
-                            </ul>
-                            <p>If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="blog_post blog_style2 box_shadow1">
-                    <div class="blog_img">
-                        <div class="fit-videos">
-                            <iframe src="https://player.vimeo.com/video/132464682?byline=0&portrait=0" width="540" height="360" allowfullscreen></iframe>
-                        </div>
-                    </div>
-                    <div class="blog_content bg-white">
-                        <div class="blog_text">
-                            <h5 class="blog_title"><a href="blog-single.html">The Problem With Typefaces on the Web</a></h5>
-                            <ul class="list_none blog_meta">
-                                <li><a href="#"><i class="ti-calendar"></i> April 14, 2018</a></li>
-                                <li><a href="#"><i class="ti-comments"></i> 13</a></li>
-                            </ul>
-                            <p>It uses a dictionary of over combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="blog_post blog_style2 box_shadow1">
-                    <div class="blog_img">
-                        <div class="carousel_slider owl-carousel owl-theme dot_style1" data-autoheight="true" data-autoplay="true" data-loop="true" data-animate-in="fadeIn" data-animate-out="fadeOut" data-autoplay-timeout="3000" data-items="1">
-                            <a href="blog-single.html">
-                                <img src="assets/images/blog_small_img4.jpg" alt="blog_img4">
-                            </a>
-                            <a href="blog-single.html">
-                                <img src="assets/images/blog_small_img4-1.jpg" alt="blog_small_img4-1">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="blog_content bg-white">
-                        <div class="blog_text">
-                            <h5 class="blog_title"><a href="blog-single.html">Why is a ticket to Lagos so expensive?</a></h5>
-                            <ul class="list_none blog_meta">
-                                <li><a href="#"><i class="ti-calendar"></i> April 14, 2018</a></li>
-                                <li><a href="#"><i class="ti-comments"></i> 20</a></li>
-                            </ul>
-                            <p>If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="blog_post blog_style2 box_shadow1">
-                    <div class="blog_img">
-                        <div class="fit-videos">
-                            <iframe width="540" height="360" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/118951274&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
-                        </div>
-                    </div>
-                    <div class="blog_content bg-white">
-                        <div class="blog_text">
-                            <h5 class="blog_title"><a href="blog-single.html">The Problem With Typefaces on the Web</a></h5>
-                            <ul class="list_none blog_meta">
-                                <li><a href="#"><i class="ti-calendar"></i> April 14, 2018</a></li>
-                                <li><a href="#"><i class="ti-comments"></i> 18</a></li>
-                            </ul>
-                            <p>It uses a dictionary of over combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="blog_post blog_style2 box_shadow1">
-                    <div class="blog_img">
-                        <div class="fit-videos">
-                            <iframe src="https://www.youtube.com/embed/7e90gBu4pas" width="540" height="360" allowfullscreen></iframe>
-                        </div>
-                    </div>
-                    <div class="blog_content bg-white">
-                        <div class="blog_text">
-                            <h5 class="blog_title"><a href="blog-single.html">The Problem With Typefaces on the Web</a></h5>
-                            <ul class="list_none blog_meta">
-                                <li><a href="#"><i class="ti-calendar"></i> April 14, 2018</a></li>
-                                <li><a href="#"><i class="ti-comments"></i> 13</a></li>
-                            </ul>
-                            <p>It uses a dictionary of over combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="blog_post blog_style2 box_shadow1">
-                    <div class="blog_img">
-                        <a href="blog-single.html">
-                            <img src="assets/images/blog_small_img5.jpg" alt="blog_small_img5">
-                        </a>
-                    </div>
-                    <div class="blog_content bg-white">
-                        <div class="blog_text">
-                            <h5 class="blog_title"><a href="blog-single.html">Why is a ticket to Lagos so expensive?</a></h5>
-                            <ul class="list_none blog_meta">
-                                <li><a href="#"><i class="ti-calendar"></i> April 14, 2018</a></li>
-                                <li><a href="#"><i class="ti-comments"></i> 12</a></li>
-                            </ul>
-                            <p>If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="blog_post blog_style2 box_shadow1">
-                    <div class="blog_img">
-                        <div class="carousel_slider owl-carousel owl-theme nav_style5" data-nav="true" data-dots="false" data-autoheight="true" data-autoplay="true" data-loop="true" data-autoplay-timeout="3000" data-items="1">
-                            <a href="blog-single.html">
-                                <img src="assets/images/blog_small_img6.jpg" alt="blog_small_img6">
-                            </a>
-                            <a href="blog-single.html">
-                                <img src="assets/images/blog_small_img6-1.jpg" alt="blog_small_img6-1">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="blog_content bg-white">
-                        <div class="blog_text">
-                            <h5 class="blog_title"><a href="blog-single.html">Why is a ticket to Lagos so expensive?</a></h5>
-                            <ul class="list_none blog_meta">
-                                <li><a href="#"><i class="ti-calendar"></i> April 14, 2018</a></li>
-                                <li><a href="#"><i class="ti-comments"></i> 17</a></li>
-                            </ul>
-                            <p>If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12 mt-2 mt-md-4">
-                <ul class="pagination pagination_style1 justify-content-center">
-                    <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1"><i class="linearicons-arrow-left"></i></a></li>
-                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#"><i class="linearicons-arrow-right"></i></a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- END SECTION BLOG -->
-
-<!-- START SECTION SUBSCRIBE NEWSLETTER -->
-<div class="section bg_default small_pt small_pb">
-	<div class="container">	
-    	<div class="row align-items-center">	
-            <div class="col-md-6">
-                <div class="heading_s1 mb-md-0 heading_light">
-                    <h3>Subscribe Our Newsletter</h3>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="newsletter_form">
-                    <form>
-                        <input type="text" required="" class="form-control rounded-0" placeholder="Enter Email Address">
-                        <button type="submit" class="btn btn-dark rounded-0" name="submit" value="Submit">Subscribe</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- START SECTION SUBSCRIBE NEWSLETTER -->
-
-</div>
-<!-- END MAIN CONTENT -->
-
-<!-- START FOOTER -->
-<footer class="footer_dark">
-	<div class="footer_top">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-6 col-sm-12">
-                	<div class="widget">
-                        <div class="footer_logo">
-                            <a href="#"><img src="assets/images/logo_light.png" alt="logo"/></a>
-                        </div>
-                        <p>If you are going to use of Lorem Ipsum need to be sure there isn't hidden of text</p>
-                    </div>
-                    <div class="widget">
-                        <ul class="social_icons social_white">
-                            <li><a href="#"><i class="ion-social-facebook"></i></a></li>
-                            <li><a href="#"><i class="ion-social-twitter"></i></a></li>
-                            <li><a href="#"><i class="ion-social-googleplus"></i></a></li>
-                            <li><a href="#"><i class="ion-social-youtube-outline"></i></a></li>
-                            <li><a href="#"><i class="ion-social-instagram-outline"></i></a></li>
-                        </ul>
-                    </div>
-        		</div>
-                <div class="col-lg-2 col-md-3 col-sm-6">
-                	<div class="widget">
-                        <h6 class="widget_title">Useful Links</h6>
-                        <ul class="widget_links">
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">FAQ</a></li>
-                            <li><a href="#">Location</a></li>
-                            <li><a href="#">Affiliates</a></li>
-                            <li><a href="#">Contact</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-6">
-                	<div class="widget">
-                        <h6 class="widget_title">Category</h6>
-                        <ul class="widget_links">
-                            <li><a href="#">Men</a></li>
-                            <li><a href="#">Woman</a></li>
-                            <li><a href="#">Kids</a></li>
-                            <li><a href="#">Best Saller</a></li>
-                            <li><a href="#">New Arrivals</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-6 col-sm-6">
-                	<div class="widget">
-                        <h6 class="widget_title">My Account</h6>
-                        <ul class="widget_links">
-                            <li><a href="#">My Account</a></li>
-                            <li><a href="#">Discount</a></li>
-                            <li><a href="#">Returns</a></li>
-                            <li><a href="#">Orders History</a></li>
-                            <li><a href="#">Order Tracking</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                	<div class="widget">
-                        <h6 class="widget_title">Contact Info</h6>
-                        <ul class="contact_info contact_info_light">
-                            <li>
-                                <i class="ti-location-pin"></i>
-                                <p>123 Street, Old Trafford, New South London , UK</p>
-                            </li>
-                            <li>
-                                <i class="ti-email"></i>
-                                <a href="mailto:info@sitename.com">info@sitename.com</a>
-                            </li>
-                            <li>
-                                <i class="ti-mobile"></i>
-                                <p>+ 457 789 789 65</p>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="bottom_footer border-top-tran">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <p class="mb-md-0 text-center text-md-start">© 2020 All Rights Reserved by Bestwebcreator</p>
-                </div>
-                <div class="col-md-6">
-                    <ul class="footer_payment text-center text-lg-end">
-                        <li><a href="#"><img src="assets/images/visa.png" alt="visa"></a></li>
-                        <li><a href="#"><img src="assets/images/discover.png" alt="discover"></a></li>
-                        <li><a href="#"><img src="assets/images/master_card.png" alt="master_card"></a></li>
-                        <li><a href="#"><img src="assets/images/paypal.png" alt="paypal"></a></li>
-                        <li><a href="#"><img src="assets/images/amarican_express.png" alt="amarican_express"></a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>
-<!-- END FOOTER -->
-
-<a href="#" class="scrollup" style="display: none;"><i class="ion-ios-arrow-up"></i></a> 
-
-<!-- Latest jQuery --> 
-<script src="assets/js/jquery-3.6.0.min.js"></script> 
-<!-- popper min js -->
-<script src="assets/js/popper.min.js"></script>
-<!-- Latest compiled and minified Bootstrap --> 
-<script src="assets/bootstrap/js/bootstrap.min.js"></script> 
-<!-- owl-carousel min js  --> 
-<script src="assets/owlcarousel/js/owl.carousel.min.js"></script> 
-<!-- magnific-popup min js  --> 
-<script src="assets/js/magnific-popup.min.js"></script> 
-<!-- waypoints min js  --> 
-<script src="assets/js/waypoints.min.js"></script> 
-<!-- parallax js  --> 
-<script src="assets/js/parallax.js"></script> 
-<!-- countdown js  --> 
-<script src="assets/js/jquery.countdown.min.js"></script> 
-<!-- imagesloaded js --> 
-<script src="assets/js/imagesloaded.pkgd.min.js"></script>
-<!-- isotope min js --> 
-<script src="assets/js/isotope.min.js"></script>
-<!-- jquery.dd.min js -->
-<script src="assets/js/jquery.dd.min.js"></script>
-<!-- slick js -->
-<script src="assets/js/slick.min.js"></script>
-<!-- fit video  -->
-<script src="assets/js/jquery.fitvids.js"></script>
-<!-- elevatezoom js -->
-<script src="assets/js/jquery.elevatezoom.js"></script>
-<!-- scripts js --> 
-<script src="assets/js/scripts.js"></script>
-
-</body>
-</html>
