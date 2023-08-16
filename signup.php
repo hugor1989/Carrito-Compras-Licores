@@ -37,7 +37,7 @@ require_once ("head.php");
                         <div class="heading_s1">
                             <h3>Crear Cuenta</h3>
                         </div>
-                        <form id="signUpForm" action="#!">
+                        <form id="signUpForm" action="" method="post">
                                 <!-- start step indicators -->
                                 <div class="form-header d-flex mb-4">
                                     <span class="stepIndicator">Nombre de Negocio</span>
@@ -50,7 +50,7 @@ require_once ("head.php");
                                 <div class="step">
                                     <p class="text-center mb-4">Nombre Comercial</p>
                                     <div class="mb-3">
-                                        <input type="text" required="" class="form-control" name="name" placeholder="Ingresar Nombre">
+                                        <input type="text" required="" class="form-control" id="name" name="name" placeholder="Ingresar Nombre">
                                     </div>
                                 </div>
                             
@@ -58,40 +58,32 @@ require_once ("head.php");
                                 <div class="step">
                                     <p class="text-center mb-4">Informacion de Contacto</p>
                                     <div class="mb-3">
-                                        <input type="text" placeholder="Nombre" oninput="this.className = ''" name="Nombre">
+                                        <input type="text" placeholder="Nombre" oninput="this.className = ''" name="Nombre" id="Nombre">
                                     </div>
                                     <div class="mb-3">
-                                        <input type="text" placeholder="Apellido" oninput="this.className = ''" name="Apellido">
+                                        <input type="text" placeholder="Apellido" oninput="this.className = ''" name="Apellido" id="Apellido">
                                     </div>
                                     <div class="mb-3">
-                                        <input type="text" placeholder="Telefono" oninput="this.className = ''" name="Telefono">
+                                        <input type="text" placeholder="Telefono" oninput="this.className = ''" name="Telefono" id="Telefono">
                                     </div>
                                     <div class="mb-3">
-                                        <input type="email" placeholder="Email" oninput="this.className = ''" name="Email">
+                                        <input type="email" placeholder="Email" oninput="this.className = ''" name="Email" id="Email">
                                     </div>
                                     <div class="mb-3">
-                                        <input type="text" placeholder="Puesto" oninput="this.className = ''" name="Puesto">
+                                        <input type="text" placeholder="Puesto" oninput="this.className = ''" name="Puesto" id="Puesto">
                                     </div>
+                                    <div class="form-group mb-3">
+                                        <input class="form-control" required="" type="password" id="password" name="password" placeholder="Password">
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <input class="form-control" required="" type="password" name="password" placeholder="Confirm Password">
+                                    </div>
+                                    
                                 </div>
                             
-                                <!-- step three -->
-                              <!--   <div class="step">
-                                    <p class="text-center mb-4">We will never sell it</p>
-                                    <div class="mb-3">
-                                        <input type="text" placeholder="Full name" oninput="this.className = ''" name="fullname">
-                                    </div>
-                                    <div class="mb-3">
-                                        <input type="text" placeholder="Mobile" oninput="this.className = ''" name="mobile">
-                                    </div>
-                                    <div class="mb-3">
-                                        <input type="text" placeholder="Address" oninput="this.className = ''" name="address">
-                                    </div>
-                                </div> -->
-                            
-                                <!-- start previous / next buttons -->
                                 <div class="form-footer d-flex">
-                                    <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
-                                    <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+                                    <button type="button" id="prevBtn" onclick="nextPrev(-1)">Regresar</button>
+                                    <button type="button" id="nextBtn" onclick="nextPrev(1)">Siguiente</button>
                                 </div>
                                 <!-- end previous / next buttons -->
                             </form>
@@ -127,11 +119,7 @@ require_once ("head.php");
                             <li><a href="#" class="btn btn-facebook"><i class="ion-social-facebook"></i>Facebook</a></li>
                             <li><a href="#" class="btn btn-google"><i class="ion-social-googleplus"></i>Google</a></li>
                         </ul> -->
-                        <div class="form-note text-center">Already have an account? <a href="login.html">Log in</a></div>
-
-
-                       
-                            
+                        <div class="form-note text-center">Ya tienes cuenta? <a href="login.php">Inicia Sesion</a></div>
                     </div>
                 </div>
             </div>
@@ -202,6 +190,11 @@ require_once ("footer.php");
 <script src="assets/js/scripts.js"></script>
 
 <script src="assets/js/funcion-form-steep.js"></script>
+
+<script src="assets/js/funciones.js"></script>
+
+<!-- ./sweet -->
+<script src="sweetalert2/sweetalert2.all.min.js"></script>    
 
 </body>
 </html>

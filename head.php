@@ -40,6 +40,8 @@
 <link rel="stylesheet" href="assets/css/style.css">
 <link rel="stylesheet" href="assets/css/responsive.css">
 <link rel="stylesheet" href="assets/css/stilo-form.css">
+<!-- SweetAlert2 -->
+<link rel="stylesheet" href="sweetalert2/sweetalert2.min.css">     
 
 </head>
 
