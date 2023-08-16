@@ -1959,5 +1959,6 @@ require_once ("footer.php");
 <!-- scripts js --> 
 <script src="assets/js/scripts.js"></script>
 
+
 </body>
 </html>
