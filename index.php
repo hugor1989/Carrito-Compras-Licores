@@ -1958,6 +1958,7 @@ require_once ("footer.php");
 <script src="assets/js/jquery.elevatezoom.js"></script>
 <!-- scripts js --> 
 <script src="assets/js/scripts.js"></script>
+<script src="assets/js/funcion-form-steep.js"></script>
 
 </body>
 </html>

@@ -39,6 +39,7 @@
 <!-- Style CSS -->
 <link rel="stylesheet" href="assets/css/style.css">
 <link rel="stylesheet" href="assets/css/responsive.css">
+<link rel="stylesheet" href="assets/css/stilo-form.css">
 
 </head>
 
@@ -104,7 +105,7 @@
             <div class="row align-items-center">
                 <div class="col-md-6">
                 	<div class="d-flex align-items-center justify-content-center justify-content-md-start">
-                        <div class="lng_dropdown me-2">
+                        <!-- <div class="lng_dropdown me-2">
                             <select name="countries" class="custome_select">
                                 <option value='en' data-image="assets/images/eng.png" data-title="English">English</option>
                                 <option value='fn' data-image="assets/images/fn.png" data-title="France">France</option>
@@ -117,7 +118,7 @@
                                 <option value='EUR' data-title="EUR">EUR</option>
                                 <option value='GBR' data-title="GBR">GBR</option>
                             </select>
-                        </div>
+                        </div> -->
                         <ul class="contact_detail text-center text-lg-start">
                             <li><i class="ti-mobile"></i><span>123-456-7890</span></li>
                         </ul>
@@ -128,7 +129,7 @@
                        	<ul class="header_list">
                         	<li><a href="compare.html"><i class="ti-control-shuffle"></i><span>Compare</span></a></li>
                             <li><a href="wishlist.html"><i class="ti-heart"></i><span>Wishlist</span></a></li>
-                            <li><a href="login.html"><i class="ti-user"></i><span>Login</span></a></li>
+                            <li><a href="login.php"><i class="ti-user"></i><span>Login</span></a></li>
 						</ul>
                     </div>
                 </div>
@@ -139,8 +140,8 @@
     	<div class="container">
             <nav class="navbar navbar-expand-lg"> 
                 <a class="navbar-brand" href="index.html">
-                    <img class="logo_light" src="assets/images/logo_light.png" alt="logo" />
-                    <img class="logo_dark" src="assets/images/logo_dark.png" alt="logo" />
+                    <img class="logo_light" src="assets/images/Logo_thi.png" alt="logo" />
+                    <img class="logo_dark" src="assets/images/Logo_thi.png" alt="logo" />
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-expanded="false"> 
                     <span class="ion-android-menu"></span>
