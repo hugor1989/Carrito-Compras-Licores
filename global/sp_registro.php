@@ -53,10 +53,11 @@ if( isset( $_SERVER['HTTP_X_REQUESTED_WITH'] ) && ( $_SERVER['HTTP_X_REQUESTED_W
 		
 
 		$Codigo = $_POST['Codigo'];
+		$Email = $_POST['Email'];
 
 		
 
-		$new = $dtbs->verificar_cuenta($Codigo);
+		$new = $dtbs->verificar_cuenta($Codigo,$Email);
 		$retval['status'] = $new[0];
 		$retval['message'] = $new[1];
 		//$retval['lastInsertId'] = $new[2];

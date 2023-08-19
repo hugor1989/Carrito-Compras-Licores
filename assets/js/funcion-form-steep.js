@@ -29,7 +29,7 @@ function nextPrev(n) {
     // Exit the function if any field in the current tab is invalid:
     if (n == 1 && !validateForm()) return false;
     // Hide the current tab:
-    x[currentTab].style.display = "block";
+    x[currentTab].style.display = "none";
     // Increase or decrease the current tab by 1:
     currentTab = currentTab + n;
     // if you have reached the end of the form...
@@ -82,45 +82,60 @@ function nextPrev(n) {
                     data: ajax,
                     success: function(data, textStatus, jqXHR)
                     {
-                        console.log(data);
+                        //console.log(data);
                         $resp = JSON.parse(data);
                         if($resp['status'] == true){
 
 
                             Swal.fire({
                                 title: 'Favor de Ingresar el codigo para verificar email',
-                                input: 'text',
-                                inputAttributes: {
-                                  autocapitalize: 'off'
-                                },
-                                showCancelButton: true,
-                                confirmButtonText: 'Verificar',
-                                showLoaderOnConfirm: true,
-                                preConfirm: (login) => {
+                                html: `<input type="text" id="codigo" class="swal2-input" placeholder="Codigo Verificador">`,
+                                confirmButtonText: 'Sign in',
+                                focusConfirm: false,
+                                preConfirm: () => {
+                                  const codigo = Swal.getPopup().querySelector('#codigo').value
+                                  
+                                  if (!codigo) {
+                                    Swal.showValidationMessage(`Favor de Ingresar el codigo verificador.`)
+                                  }else{
 
-                                      
                                     let ajax = {
                                         method: "verificar_cuenta",
-                                        Codigo: login
+                                        Codigo: codigo,
+                                        Email: emailinsert,
                                        
                                     }
-
+    
                                     $.ajax({
                                         url: 'global/sp_registro.php',
                                         type: "POST",
                                         data: ajax,
-                                        success: function(data, textStatus, jqXHR)
+                                        success: function(response, textStatus, jqXHR)
                                         {
-                                            console.log(data);
-                                            $resp = JSON.parse(data);
-                                            if($resp['status'] == true){
-                    
-                    
-                                                return data
-                                          
-                                                    
+                                           
+                                            $respuesta = JSON.parse(response);
+                                            console.log(response);
+                                            if($respuesta['status'] == true){
+
+                                                console.log(resultadodos);         
+                                                Swal.fire({
+                                                    type:'success',
+                                                    title:'¡Felicidades!' +
+                                                    resultadodos.mensaje ,
+                                                    confirmButtonColor:'#3085d6',
+                                                    confirmButtonText:'Ingresar'
+                                                }).then((resultos) => {
+                                                    if(resultos.value){
+                                                        window.location.href = "index.php";
+                                                    }
+                                                })
+    
+                                               
                                             }else{
-                                                return data
+    
+                                                Swal.showValidationMessage(`Favor de Ingresar el codigo verificador correcto.`)
+    
+    
                                             }
                                         },
                                         error: function (request, textStatus, errorThrown) {
@@ -128,40 +143,25 @@ function nextPrev(n) {
                                         }
                                     });
 
-                                },
-                                allowOutsideClick: () => !Swal.isLoading()
-                              }).then((result) => {
-
-                                $resp = JSON.parse(result);
-                                if($resp['status'] == true){
-
-                                    Swal.fire({
-                                        type:'success',
-                                        title:'¡Felicidades!' +
-                                              'Verificacion de Cuenta Correcta!' +' '+ $resp['message'] ,
-                                        confirmButtonColor:'#3085d6',
-                                        confirmButtonText:'Ingresar'
-                                    }).then((result) => {
-                                        if(result.value){
-                                            window.location.href = "index.php";
-                                        }
-                                    })
+                                  }
                                 }
-
-                                 
-                               /*  console.log(result);
-
-                                window.location.href = "index.php";
-                                if (result.isConfirmed) {
-                                  Swal.fire({
-                                    title: `${result.value.login}'s avatar`,
-                                    imageUrl: result.value.avatar_url
-                                  })
-                                } */
                               })
-                           
-                            
-                                
+                              /* .then((resultadodos) => {
+
+                               console.log(resultadodos);         
+                                Swal.fire({
+                                    type:'success',
+                                    title:'¡Felicidades!' +
+                                    resultadodos.mensaje ,
+                                    confirmButtonColor:'#3085d6',
+                                    confirmButtonText:'Ingresar'
+                                }).then((resultos) => {
+                                    if(resultos.value){
+                                        window.location.href = "index.php";
+                                    }
+                                })
+
+                              }) */
                         }else{
                              Swal("Error save customer : "+$resp['message'])
                         }
@@ -174,9 +174,12 @@ function nextPrev(n) {
         })
         
        
+    }else{
+
+        showTab(currentTab);
     }
     // Otherwise, display the correct tab:
-    showTab(currentTab);
+    
 }
 
 function validateForm() {
