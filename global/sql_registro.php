@@ -133,7 +133,7 @@ class sql_registro extends dbconn {
 		}
 	}
 
-	public function verificar_cuenta($Codigo)
+	public function verificar_cuenta($Codigo, $Email)
 	{
 		$db = $this->dblocal;
 		try
@@ -142,7 +142,7 @@ class sql_registro extends dbconn {
 			//Funcione para Insertar el usuario
 			$consulta = "SELECT *
 						  FROM th_usuarios 
-						  WHERE CodigoVerificacion='$Codigo' ";
+						  WHERE CodigoVerificacion='$Codigo' AND usr_email='$Email' ";
 
 			$stmt = $db->prepare($consulta);
 			$stmt->execute();
@@ -151,11 +151,16 @@ class sql_registro extends dbconn {
 
 				$stat[0] = true;
 				$stat[1] = "Verificacion Correcta";
+
+				return $stat;
 				
 			}else{
 
-				$stat[0] = true;
+				$stat[0] = false;
 				$stat[1] = "Codigo de verificacion incorrecto";
+
+
+				return $stat;
 
 			}
 
@@ -174,7 +179,7 @@ class sql_registro extends dbconn {
 			$stat[1] = "Registro Exitoso"; */
 			//$stat[2] = $lastInsertId;
 			//$stat[3] = $lastInsertIdRestaurate;
-			return $stat;
+			
 		}
 		catch(PDOException $ex)
 		{
