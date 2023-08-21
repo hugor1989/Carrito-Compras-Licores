@@ -64,10 +64,13 @@ require_once ("head.php");
                                         <input type="text" placeholder="Apellido" oninput="this.className = ''" name="Apellido" id="Apellido">
                                     </div>
                                     <div class="mb-3">
-                                        <input type="text" placeholder="Telefono" oninput="this.className = ''" name="Telefono" id="Telefono">
+                                    
+                                        <input type="numeric" maxlength="10"
+                                               oninput="this.className = ''" name="Telefono" id="Telefono" 
+                                               placeholder="xx-xxxx-xxxx">
                                     </div>
                                     <div class="mb-3">
-                                        <input type="email" placeholder="Email" oninput="this.className = ''" name="Email" id="Email">
+                                        <input type="email" placeholder="Email" oninput="this.className = ''" name="Email" id="Email"  onchange="validaUsuario()">
                                     </div>
                                     <div class="mb-3">
                                         <input type="text" placeholder="Puesto" oninput="this.className = ''" name="Puesto" id="Puesto">
@@ -76,7 +79,7 @@ require_once ("head.php");
                                         <input class="form-control" required="" type="password" id="password" name="password" placeholder="Password">
                                     </div>
                                     <div class="form-group mb-3">
-                                        <input class="form-control" required="" type="password" name="password" placeholder="Confirm Password">
+                                        <input class="form-control" required="" type="password" name="renewpassword" placeholder="Confirmar Password">
                                     </div>
                                     
                                 </div>
@@ -87,38 +90,7 @@ require_once ("head.php");
                                 </div>
                                 <!-- end previous / next buttons -->
                             </form>
-                     <!--    <form method="post">
-                            <div class="form-group mb-3">
-                                <input type="text" required="" class="form-control" name="name" placeholder="Enter Your Name">
-                            </div>
-                            <div class="form-group mb-3">
-                                <input type="text" required="" class="form-control" name="email" placeholder="Enter Your Email">
-                            </div>
-                            <div class="form-group mb-3">
-                                <input class="form-control" required="" type="password" name="password" placeholder="Password">
-                            </div>
-                            <div class="form-group mb-3">
-                                <input class="form-control" required="" type="password" name="password" placeholder="Confirm Password">
-                            </div>
-                            <div class="login_footer form-group mb-3">
-                                <div class="chek-form">
-                                    <div class="custome-checkbox">
-                                        <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox2" value="">
-                                        <label class="form-check-label" for="exampleCheckbox2"><span>I agree to terms &amp; Policy.</span></label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group mb-3">
-                                <button type="submit" class="btn btn-fill-out btn-block" name="register">Register</button>
-                            </div>
-                        </form> -->
-                        <!-- <div class="different_login">
-                            <span> or</span>
-                        </div>
-                        <ul class="btn-login list_none text-center">
-                            <li><a href="#" class="btn btn-facebook"><i class="ion-social-facebook"></i>Facebook</a></li>
-                            <li><a href="#" class="btn btn-google"><i class="ion-social-googleplus"></i>Google</a></li>
-                        </ul> -->
+                  
                         <div class="form-note text-center">Ya tienes cuenta? <a href="login.php">Inicia Sesion</a></div>
                     </div>
                 </div>
@@ -153,7 +125,45 @@ require_once ("head.php");
 </div>
 <!-- END MAIN CONTENT -->
 <!-- END MAIN CONTENT -->
-
+<!-- Home Popup Section -->
+<div class="modal fade subscribe_popup" id="verificar-popup" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="ion-ios-close-empty"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row g-0">
+                    
+                    <div class="col-sm-12">
+                        <div class="popup_content">
+                            <div class="popup-text">
+                                <div class="heading_s1">
+                                    <h4>Verificacion de Cuenta</h4>
+                                </div>
+                                <p>Favor de ingresar el codigo para verificar su cuenta de email.</p>
+                            </div>
+                            <form method="post">
+                                <input type="hidden" id="emailusuario" name="emailusuario">
+                            	<div class="form-group mb-3">
+                                	<input name="codigo" id="codigo" required type="text" class="form-control rounded-0" placeholder="Ingresar codigo">
+                                </div>
+                                <div class="form-group mb-3">
+                                	<button id="Btn_VerificarCodigo" name="Btn_VerificarCodigo"
+                                            class="btn btn-fill-line btn-block text-uppercase rounded-0" title="Validar" type="submit">Validar</button>
+                                </div>
+                            </form>
+                 
+                        </div>
+                    </div>
+                </div>
+            </div>
+    	</div>
+    </div>
+</div>
+<!-- End Screen Load Popup Section --> 
 <?php 
 require_once ("footer.php");
 ?>
@@ -198,3 +208,5 @@ require_once ("footer.php");
 
 </body>
 </html>
+
+

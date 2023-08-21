@@ -147,12 +147,41 @@ class sql_registro extends dbconn {
 			$stmt = $db->prepare($consulta);
 			$stmt->execute();
 
+			//Se valida que existe al menos 1 registro para despues realizar un update a la tabla de usuarios para actizalizar el campo de EmailVerificado
 			if($stmt->rowCount() >= 1){
 
-				$stat[0] = true;
-				$stat[1] = "Verificacion Correcta";
+				/* $stat[0] = true;
+				$stat[1] = "Verificacion Correcta"; */
+				try
+				{
 
-				return $stat;
+					$Estatus=1;
+
+					$stmt1 = $db->prepare("UPDATE th_usuarios set EmailVerificado = :EmailVerificado where CodigoVerificacion = :CodigoVerificacion ");
+					$stmt1->bindParam("EmailVerificado",$Estatus);
+					$stmt1->bindParam("CodigoVerificacion",$Codigo);
+					//$stmt1->execute();
+
+					if($stmt1->execute() !== false && $stmt1->rowCount() > 0)
+					{
+						$stat[0] = true;
+						$stat[1] = "Verificacion Correcta";
+						return $stat;
+					}else
+					{
+						$stat[0] = true;
+						$stat[1] = "No se pudo verificar la cuenta";
+						return $stat;
+					}
+
+
+					
+				}catch(PDOException $ex)
+				{
+					$stat[0] = false;
+					$stat[1] = $ex->getMessage();
+					return $stat;
+				}
 				
 			}else{
 
@@ -163,22 +192,48 @@ class sql_registro extends dbconn {
 				return $stat;
 
 			}
-
-			//Codigo para guardar en una variable el id y poder crear la carpeta
-			//$estructura = $lastInsertId;
 			
-			//Funcion para Insertar el Resturante tomando como variable el Id del usuario por eso se pone en la
-			//misma transaccion
-			/* $stmt = $db->prepare("insert into Restaurante (Nombre, IdUsuario) values (:Nombre, :IdUsuario)");
-			$stmt->bindParam("Nombre",$negocio);
-			$stmt->bindParam("IdUsuario",$lastInsertId);
-			$stmt->execute(); */
-			//$lastInsertIdRestaurate = $db->lastInsertId();
-			/* 	 
-			$stat[0] = true;
-			$stat[1] = "Registro Exitoso"; */
+		}
+		catch(PDOException $ex)
+		{
+			$lastInsertId = 0;
+			$stat[0] = false;
+			$stat[1] = $ex->getMessage();
 			//$stat[2] = $lastInsertId;
-			//$stat[3] = $lastInsertIdRestaurate;
+			return $stat;
+		}
+	}
+
+	public function verificar_email($Email)
+	{
+		$db = $this->dblocal;
+		try
+		{
+			
+			//Funcione para Insertar el usuario
+			$consulta = "SELECT *
+						  FROM th_usuarios 
+						  WHERE usr_email='$Email' ";
+
+			$stmt = $db->prepare($consulta);
+			$stmt->execute();
+
+			//Se valida que existe al menos 1 registro para despues realizar un update a la tabla de usuarios para actizalizar el campo de EmailVerificado
+			if($stmt->rowCount() >= 1){
+
+				$stat[0] = true;
+				$stat[1] = "Email ya registrada, pavor de usar otro email";
+				return $stat;
+				
+			}else{
+
+				$stat[0] = false;
+				$stat[1] = "El email de usuario es valido";
+
+
+				return $stat;
+
+			}
 			
 		}
 		catch(PDOException $ex)
@@ -196,41 +251,39 @@ class sql_registro extends dbconn {
 		$db = $this->dblocal;
 		try{
 			
-			 $password = md5($password); //encripto la clave enviada por el usuario para compararla con la clava encriptada y almacenada en la BD
-			 $consulta = "SELECT US.Id as IdUsuario, US.Nombre as NombreUsuario, US.Email as EmailUsuario, 
-								 RT.Id as IdRestaurante 
-						  FROM Usuario US 
-						  INNER JOIN Restaurante RT ON RT.IdUsuario=US.Id
-						  WHERE US.Email='$email' AND US.Password='$password' ";
+			// $password = md5($password); //encripto la clave enviada por el usuario para compararla con la clava encriptada y almacenada en la BD
+			 $consulta = "SELECT * 
+						  FROM th_usuarios 
+						  WHERE usr_usuario='$email' AND usr_contrasena='$password' ";
 			 $stmt = $db->prepare($consulta);
 			 $stmt->execute();
 			 
 			 if($stmt->rowCount() >= 1){
-				 //$data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+				 
 				 while($row = $stmt->fetch()) {
-						//$thisdir = getcwd();
-						 $_SESSION['usuario'] = $row['NombreUsuario'];
-						 $_SESSION['email'] = $row['EmailUsuario'];
-						 $_SESSION['IdUsuario'] = $row['IdUsuario'];
-						 $_SESSION['IdRestaurante'] = $row['IdRestaurante'];
-						 $stat[0] = true;
-						 $stat[1] = "Sesion Iniciada Correctamente";
-						 $stat[2] = $row['NombreUsuario'];
-						 
-						 // //Codigo para abrir la carpeta y crear un subdirectorio
-						 $idus = $row['IdUsuario'];
-						 $idrest= $row['IdRestaurante'];
-						 $path = $idus.'/';
-						 
-						// $dir = $path;
-						 if (is_dir($path)) {
-							if ($dh = opendir($path)) {
-								
-								if(!is_dir($path.$idrest)){
-									mkdir($path.$idrest,  0777, true);
-								}
-								closedir($dh);
-							}
+
+						if($row['EmailVerificado'] == 0){
+
+							$stat[0] = false;
+							$stat[1] = "Aun no haz verificado tu cuenta, favor de verificar para proceder con la activacion de tu cuenta";
+							$stat[2] = $row['usr_nombre'].' '.$row['usr_nombre'];
+							$stat[3] = $row['EmailVerificado'];
+						}else{
+
+
+							$_SESSION['neogcio'] = $row['usr_nombrenegocio'];
+							$_SESSION['rol'] = $row['usr_idRol'];
+							$_SESSION['nombre'] = $row['usr_nombre'].' '.$row['usr_nombre'];
+							$_SESSION['email'] = $row['usr_email'];
+							$_SESSION['tipocosto'] = $row['usr_tipocosto'];
+							$_SESSION['sucursales'] = $row['usr_nosucursales'];
+							$_SESSION['diascredito'] = $row['usr_diascredito'];
+							$_SESSION['montocredito'] = $row['usr_montocredito'];
+   
+							$stat[0] = true;
+							$stat[1] = "Sesion Iniciada Correctamente";
+							$stat[2] = $row['usr_nombre'].' '.$row['usr_nombre'];
+							$stat[3] = $row['EmailVerificado'];
 						}
 						 
 					}
@@ -240,6 +293,7 @@ class sql_registro extends dbconn {
 				 $stat[0] = false;
 				 $stat[1] = "Error Inicio de Sesion";
 				 $stat[2] = null;
+				 $stat[3] = null;
 				 
 				 
 				 return $stat;
@@ -249,6 +303,7 @@ class sql_registro extends dbconn {
 				 $stat[0] = false;
 				 $stat[1] = $ex->getMessage();
 				 $stat[2] = null;
+				 $stat[3] = null;
 				 
 			
 			return $stat;
