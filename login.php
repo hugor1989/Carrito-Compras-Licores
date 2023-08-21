@@ -37,12 +37,12 @@ require_once ("head.php");
                         <div class="heading_s1">
                             <h3>Login</h3>
                         </div>
-                        <form method="post">
+                        <form method="post" action="">
                             <div class="form-group mb-3">
-                                <input type="text" required="" class="form-control" name="email" placeholder="Email">
+                                <input type="email" required class="form-control" id="email" name="email" placeholder="Email">
                             </div>
                             <div class="form-group mb-3">
-                                <input class="form-control" required="" type="password" name="password" placeholder="Password">
+                                <input class="form-control" required type="password" id="password" name="password" placeholder="Password">
                             </div>
                             <div class="login_footer form-group mb-3">
                                 <div class="chek-form">
@@ -54,11 +54,11 @@ require_once ("head.php");
                                 <a href="#">Olvido Password?</a>
                             </div>
                             <div class="form-group mb-3">
-                                <button type="submit" class="btn btn-fill-out btn-block" name="login">Iniciar Sesion</button>
+                                <button type="submit" class="btn btn-fill-out btn-block" id="login" name="login">Iniciar Sesion</button>
                             </div>
                         </form>
                         <div class="different_login">
-                            <span> or</span>
+                            <span> o</span>
                         </div>
                     <!--     <ul class="btn-login list_none text-center">
                             <li><a href="#" class="btn btn-facebook"><i class="ion-social-facebook"></i>Facebook</a></li>
@@ -94,7 +94,45 @@ require_once ("head.php");
     </div>
 </div>
 <!-- START SECTION SUBSCRIBE NEWSLETTER -->
-
+<!-- Home Popup Section -->
+<div class="modal fade subscribe_popup" id="verificar-popup" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="ion-ios-close-empty"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row g-0">
+                    
+                    <div class="col-sm-12">
+                        <div class="popup_content">
+                            <div class="popup-text">
+                                <div class="heading_s1">
+                                    <h4>Verificacion de Cuenta</h4>
+                                </div>
+                                <p>Favor de ingresar el codigo para verificar su cuenta de email.</p>
+                            </div>
+                            <form method="post">
+                                <input type="hidden" id="emailusuario" name="emailusuario">
+                            	<div class="form-group mb-3">
+                                	<input name="codigo" id="codigo" required type="text" class="form-control rounded-0" placeholder="Ingresar codigo">
+                                </div>
+                                <div class="form-group mb-3">
+                                	<button id="Btn_VerificarCodigo" name="Btn_VerificarCodigo"
+                                            class="btn btn-fill-line btn-block text-uppercase rounded-0" title="Validar" type="submit">Validar</button>
+                                </div>
+                            </form>
+                 
+                        </div>
+                    </div>
+                </div>
+            </div>
+    	</div>
+    </div>
+</div>
+<!-- End Screen Load Popup Section --> 
 </div>
 <!-- END MAIN CONTENT -->
 <!-- END MAIN CONTENT -->
@@ -131,8 +169,12 @@ require_once ("footer.php");
 <script src="assets/js/slick.min.js"></script>
 <!-- elevatezoom js -->
 <script src="assets/js/jquery.elevatezoom.js"></script>
+<script src="assets/js/iniciar-sesion.js"></script>
 <!-- scripts js --> 
 <script src="assets/js/scripts.js"></script>
+
+<!-- ./sweet -->
+<script src="sweetalert2/sweetalert2.all.min.js"></script>    
 
 </body>
 </html>

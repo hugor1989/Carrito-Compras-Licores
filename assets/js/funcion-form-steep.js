@@ -1,3 +1,24 @@
+const mymodal = new bootstrap.Modal('#verificar-popup');
+
+document.querySelector('.btn-close').addEventListener('click',() => {
+
+    Swal.fire({
+        type:'warning',
+        title:'Estar seguro de cerrar la venta?',
+        text: 'Si cierra la ventana su verificacion de cuenta no se realizara y no se podra dar seguimiento a su alta!' ,
+        confirmButtonColor:'#3085d6',
+        confirmButtonText:'Aceptar'
+    }).then((result) => {
+        if(result.value){
+            mymodal.hide();
+            window.location.href = "login.php";
+        }
+    })
+
+    mymodal.hide();
+
+});
+
 var currentTab = 0; // Current tab is set to be the first tab (0)
 showTab(currentTab); // Display the current tab
 
@@ -14,9 +35,9 @@ function showTab(n) {
         document.getElementById("prevBtn").style.display = "inline";
     }
     if (n == (x.length - 1)) {
-        document.getElementById("nextBtn").innerHTML = "Submit";
+        document.getElementById("nextBtn").innerHTML = "Crear Cuenta";
     } else {
-        document.getElementById("nextBtn").innerHTML = "Next";
+        document.getElementById("nextBtn").innerHTML = "Siguiente";
     }
     //... and run a function that will display the correct step indicator:
     fixStepIndicator(n)
@@ -55,7 +76,7 @@ function nextPrev(n) {
             confirmButtonClass: "btn-primary",
             confirmButtonText: "Guardar",
             closeOnConfirm: false,
-            showLoaderOnConfirm: true
+            showLoaderOnConfirm: false
         }).then((result) =>{
             if(result.value){
                  
@@ -86,82 +107,12 @@ function nextPrev(n) {
                         $resp = JSON.parse(data);
                         if($resp['status'] == true){
 
-
-                            Swal.fire({
-                                title: 'Favor de Ingresar el codigo para verificar email',
-                                html: `<input type="text" id="codigo" class="swal2-input" placeholder="Codigo Verificador">`,
-                                confirmButtonText: 'Sign in',
-                                focusConfirm: false,
-                                preConfirm: () => {
-                                  const codigo = Swal.getPopup().querySelector('#codigo').value
-                                  
-                                  if (!codigo) {
-                                    Swal.showValidationMessage(`Favor de Ingresar el codigo verificador.`)
-                                  }else{
-
-                                    let ajax = {
-                                        method: "verificar_cuenta",
-                                        Codigo: codigo,
-                                        Email: emailinsert,
-                                       
-                                    }
-    
-                                    $.ajax({
-                                        url: 'global/sp_registro.php',
-                                        type: "POST",
-                                        data: ajax,
-                                        success: function(response, textStatus, jqXHR)
-                                        {
-                                           
-                                            $respuesta = JSON.parse(response);
-                                            console.log(response);
-                                            if($respuesta['status'] == true){
-
-                                                console.log(resultadodos);         
-                                                Swal.fire({
-                                                    type:'success',
-                                                    title:'¡Felicidades!' +
-                                                    resultadodos.mensaje ,
-                                                    confirmButtonColor:'#3085d6',
-                                                    confirmButtonText:'Ingresar'
-                                                }).then((resultos) => {
-                                                    if(resultos.value){
-                                                        window.location.href = "index.php";
-                                                    }
-                                                })
-    
-                                               
-                                            }else{
-    
-                                                Swal.showValidationMessage(`Favor de Ingresar el codigo verificador correcto.`)
-    
-    
-                                            }
-                                        },
-                                        error: function (request, textStatus, errorThrown) {
-                                            return response.json()
-                                        }
-                                    });
-
-                                  }
-                                }
-                              })
-                              /* .then((resultadodos) => {
-
-                               console.log(resultadodos);         
-                                Swal.fire({
-                                    type:'success',
-                                    title:'¡Felicidades!' +
-                                    resultadodos.mensaje ,
-                                    confirmButtonColor:'#3085d6',
-                                    confirmButtonText:'Ingresar'
-                                }).then((resultos) => {
-                                    if(resultos.value){
-                                        window.location.href = "index.php";
-                                    }
-                                })
-
-                              }) */
+                            $("#emailusuario").val(emailinsert);
+                            setTimeout(function() {
+                                $("#verificar-popup").modal('show', {}, 500);
+                            }, 3000);
+                            
+                        
                         }else{
                              Swal("Error save customer : "+$resp['message'])
                         }
@@ -212,4 +163,132 @@ function fixStepIndicator(n) {
     }
     //... and adds the "active" class on the current step:
     x[n].className += " active";
+}
+
+
+jQuery(function ($) {
+    $('[id^=Btn_VerificarCodigo]').on('click', function (e) {
+        e.preventDefault();
+
+
+        $("#verificar-popup").modal('hide', {}, 500);
+
+        var emailinsert = $("#emailusuario").val();
+        var codigo = $.trim($("#codigo").val());
+
+        let ajax = {
+            method: "verificar_cuenta",
+            Codigo: codigo,
+            Email: emailinsert,
+           
+        }
+
+            $.ajax({
+                url: 'global/sp_registro.php',
+                type: "POST",
+                data: ajax,
+                success: function(response, textStatus, jqXHR)
+                {
+                console.log(response);
+                    $respuesta = JSON.parse(response);
+                // console.log(response);
+                    if($respuesta['status'] == true){
+
+                        Swal.fire({
+                            type:'success',
+                            title:'Verificacion de cuenta correcta!',
+                            text: 'Favor de seguir con las instrucciones para la activacion de la cuenta!' ,
+                            confirmButtonColor:'#3085d6',
+                            confirmButtonText:'Aceptar'
+                        }).then((result) => {
+                            if(result.value){
+                                window.location.href = "index.php";
+                            }
+                        })
+                    
+                    }else{
+
+                        Swal.fire({
+                            type:'warning',
+                            title:'Verificacion de email incorrecta!',
+                            text: 'Favor de ingresar el codigo correcto! ' +  $respuesta['message'],
+                            confirmButtonColor:'#3085d6',
+                            confirmButtonText:'Aceptar'
+                        }).then((result) => {
+                            if(result.value){
+                                $("#verificar-popup").modal('show', {}, 500);
+                            }
+                        })
+                    }
+                },
+                error: function (request, textStatus, errorThrown) {
+                    return response.json()
+                }
+            });
+
+        });
+});
+
+
+
+
+      // funcion para validar que el email no este registrado en otro usuario
+function validaUsuario() {
+    var email=$('#Email').val();
+
+
+    let ajax = {
+        method: "verificar_email",
+        Email: email,
+       
+    }
+
+    $.ajax({
+        url: 'global/sp_registro.php',
+        type: "POST",
+        data: ajax,
+        success: function(response, textStatus, jqXHR)
+        {
+           //console.log(response);
+            $respuesta = JSON.parse(response);
+           // console.log(response);
+            if($respuesta['status'] == true){
+
+                var Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000
+                  });
+
+                  $(document).ready(function() {
+                    Toast.fire({
+                      icon: 'error',
+                      title: 'El correo ingresado ya existe, intentar con otro diferente'
+                    })
+                  });
+                  $('#nextBtn').hide('hide');
+             
+            }else{
+
+                var Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000
+                  });
+
+                  $(document).ready(function() {
+                    Toast.fire({
+                      icon: 'success',
+                      title: 'El email de usuario es valido'
+                    })
+                  });
+            }
+        },
+        error: function (request, textStatus, errorThrown) {
+            return response.json()
+        }
+    });
+   
 }

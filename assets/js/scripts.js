@@ -812,11 +812,11 @@ PAGE JS
 	26. ONLOAD POPUP JS
 	*===================================*/
 	
-	$(window).on('load',function(){
+	/* $(window).on('load',function(){
 		setTimeout(function() {
 			$("#onload-popup").modal('show', {}, 500);
 		}, 3000);
 		
-	});	
+	});	 */
 	
 })(jQuery);

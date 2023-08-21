@@ -24,6 +24,7 @@ if( isset( $_SERVER['HTTP_X_REQUESTED_WITH'] ) && ( $_SERVER['HTTP_X_REQUESTED_W
 		$retval['status'] = $list[0];
 		$retval['message'] = $list[1];
 		$retval['usuario'] = $list[2];
+		$retval['verificacion'] = $list[3];
 		//$retval['url'] = $list[3];
 		echo json_encode($retval);
 	}
@@ -60,8 +61,16 @@ if( isset( $_SERVER['HTTP_X_REQUESTED_WITH'] ) && ( $_SERVER['HTTP_X_REQUESTED_W
 		$new = $dtbs->verificar_cuenta($Codigo,$Email);
 		$retval['status'] = $new[0];
 		$retval['message'] = $new[1];
-		//$retval['lastInsertId'] = $new[2];
-		//$retval['lastInsertIdRestaurate'] = $new[3];
+		echo json_encode($retval);
+	}
+
+	if($method == 'verificar_email'){
+		
+		$Email = $_POST['Email'];
+
+		$new = $dtbs->verificar_email($Email);
+		$retval['status'] = $new[0];
+		$retval['message'] = $new[1];
 		echo json_encode($retval);
 	}
 
