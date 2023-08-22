@@ -279,6 +279,7 @@ class sql_registro extends dbconn {
 							$_SESSION['sucursales'] = $row['usr_nosucursales'];
 							$_SESSION['diascredito'] = $row['usr_diascredito'];
 							$_SESSION['montocredito'] = $row['usr_montocredito'];
+							$_SESSION['status'] = $row['usr_estatus'];
    
 							$stat[0] = true;
 							$stat[1] = "Sesion Iniciada Correctamente";
