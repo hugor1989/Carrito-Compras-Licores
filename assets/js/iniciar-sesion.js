@@ -55,7 +55,7 @@ jQuery(function ($) {
                             confirmButtonText:'Aceptar'
                         }).then((result) => {
                             if(result.value){
-                                window.location.href = "index.php";
+                                window.location.href = "mi-cuenta.php";
                             }
                         })
                     
