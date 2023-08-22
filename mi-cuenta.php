@@ -139,44 +139,131 @@ require_once ("head.php");
                     <div class="tab-pane fade" id="account-detail" role="tabpanel" aria-labelledby="account-detail-tab">
 						<div class="card">
                         	<div class="card-header">
-                                <h3>Account Details</h3>
+                                <h3>Detalle de la Cuenta</h3>
                             </div>
                             <div class="card-body">
                     			
-                                <form method="post" name="enq">
-                                    <div class="row">
-                                        <div class="form-group col-md-6 mb-3">
-                                        	<label>First Name <span class="required">*</span></label>
-                                            <input required="" class="form-control" name="name" type="text">
-                                         </div>
-                                         <div class="form-group col-md-6 mb-3">
-                                        	<label>Last Name <span class="required">*</span></label>
-                                            <input required="" class="form-control" name="phone">
-                                        </div>
-                                        <div class="form-group col-md-12 mb-3">
-                                        	<label>Display Name <span class="required">*</span></label>
-                                            <input required="" class="form-control" name="dname" type="text">
-                                        </div>
-                                        <div class="form-group col-md-12 mb-3">
-                                        	<label>Email Address <span class="required">*</span></label>
-                                            <input required="" class="form-control" name="email" type="email">
-                                        </div>
-                                        <div class="form-group col-md-12 mb-3">
-                                        	<label>Current Password <span class="required">*</span></label>
-                                            <input required="" class="form-control" name="password" type="password">
-                                        </div>
-                                        <div class="form-group col-md-12 mb-3">
-                                        	<label>New Password <span class="required">*</span></label>
-                                            <input required="" class="form-control" name="npassword" type="password">
-                                        </div>
-                                        <div class="form-group col-md-12 mb-3">
-                                        	<label>Confirm Password <span class="required">*</span></label>
-                                            <input required="" class="form-control" name="cpassword" type="password">
-                                        </div>
-                                        <div class="col-md-12">
-                                            <button type="submit" class="btn btn-fill-out" name="submit" value="Submit">Save</button>
+                                <form method="post" action="">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Nombre del negocio</label>
+                                        <input type="text" class="form-control" id="nombrenegocio" name="nombrenegocio" value="<?php echo $_SESSION['negocio']; ?>" readonly>
+                                    </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Contacto</label>
+                                        <input type="text" class="form-control" id="nombrecompletousr" name="nombrecompletousr" value="<?php echo $_SESSION['nombre']; ?>" readonly>
+                                    </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Número de Sucursales</label>
+                                        <input type="text" class="form-control" id="nosucursales" name="nosucursales" placeholder="Cuantas sucursales tienes?">
+                                        <input type="hidden" class="form-control" id="activarRegistro" name="activarRegistro" value="activarRegistro">
+                                        <input type="hidden" class="form-control" id="idUsuario" name="idUsuario" value="<?php echo $_SESSION['Id']; ?>">
+                                    </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Ticket promedio</label>
+                                        <input type="text" class="form-control" id="ticket" name="ticket" placeholder="Ticket promedio">
+                                    </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Número de mesas</label>
+                                        <input type="text" class="form-control" id="nomesas" name="nomesas" placeholder="Número de mesas por todas las sucursales">
+                                    </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Número de empleados</label>
+                                        <input type="text" class="form-control" id="noempleados" name="noempleados" placeholder="Número total de empleados por todas las sucursales">
+                                    </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Constancia de Situación Fiscal (PDF)</label>
+                                                <div class="input-group">
+                                                    <div class="custom-file">
+                                                        <input type="hidden" id="urlpdf" name="urlpdf">
+                                                        <input class="custom-file-input" type="file" id="archivocsf" name="archivocsf" accept=".pdf" required>
+                                                    </div>
+                                                </div> 
                                         </div>
                                     </div>
+                                    <br>
+                                    <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Plazo de pago en días</label>
+                                        <input type="text" class="form-control" id="plazopago" name="plazopago" value="7" readonly placeholder="Dias de credito del cliente">
+                                    </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="widget">
+                                                <h5 class="widget_title">Monto a autorizar de crédito</h5>
+                                                <div class="filter_price">
+                                                    <div id="price_filter" name="price_filter" data-min="0" data-max="50000" data-min-value="50" data-max-value="50000" data-price-sign="$"></div>
+                                                    <div class="price_range">
+                                                        <span>Credito: <span id="flt_price"></span></span>
+                                                        <input type="hidden" id="price_first">
+                                                        <input type="hidden" id="price_second">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <br>        
+                                <div class="row">
+                                    <legend>Referencias comerciales de la Empresa</legend>
+                                    <div class="col-md-12"> 
+                                        <div class="form-group">
+                                            <div class="table-responsive">
+                                                <table class="table table-bordered" id="dynamic_field3">
+                                                <tr>
+                                                    <td><b>Proveedor</b></td>
+                                                    <td><b>Teléfono</b></td>
+                                                    <td><b>Dirección</b></td>
+                                                    <td><b>Comentarios</b></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><input type="text" class="form-control" id="nameref1" name="nameref1" placeholder="Nombre comercial del proveedor"></td>
+                                                    <td><input type="text" class="form-control" id="telref1" name="telref1" placeholder="Teléfono de contacto"></td>
+                                                    <td><input type="text" class="form-control" id="dirref1" name="dirref1" placeholder="Dirección (Incluye calle, colonia, estado y municipio)"></td>
+                                                    <td><input type="text" class="form-control" id="comment1" name="comment1"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><input type="text" class="form-control" id="nameref2" name="nameref2" placeholder="Nombre comercial del proveedor"></td>
+                                                    <td><input type="text" class="form-control" id="telref2" name="telref2" placeholder="Teléfono de contacto"></td>
+                                                    <td><input type="text" class="form-control" id="dirref2" name="dirref2" placeholder="Dirección (Incluye calle, colonia, estado y municipio)"></td>
+                                                    <td><input type="text" class="form-control" id="comment2" name="comment2"></td>
+                                                </tr>
+                                                </table>
+                                            </div>        
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="col-md-12">
+                                    <button type="submit" class="btn btn-fill-out" id="Btn_actualizarinformacionusuario" name="Btn_actualizarinformacionusuario" value="Submit">Actualizar Infotrmacion</button>
+                                </div>
                                 </form>
                             </div>
                         </div>
@@ -230,6 +317,11 @@ require_once ("footer.php");
 <script src="assets/js/jquery.elevatezoom.js"></script>
 <!-- scripts js --> 
 <script src="assets/js/scripts.js"></script>
+
+<script src="assets/js/mi-cuenta.js"></script>
+
+<!-- ./sweet -->
+<script src="sweetalert2/sweetalert2.all.min.js"></script>    
 
 </body>
 </html>
