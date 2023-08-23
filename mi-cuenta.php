@@ -216,14 +216,29 @@ require_once ("head.php");
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <div class="widget">
-                                                <h5 class="widget_title">Monto a autorizar de crédito</h5>
+                                                <h5 class="widget_title">Monto a Solicitar</h5>
                                                 <div class="filter_price">
-                                                    <div id="price_filter" name="price_filter" data-min="0" data-max="50000" data-min-value="50" data-max-value="50000" data-price-sign="$"></div>
+                                                <input id="myRange"
+                                                        step="100" 
+                                                        max="20000"
+                                                        type="range" 
+                                                        class="form-range" />
+                                            
                                                     <div class="price_range">
+                                                        <span>Credito a Solicitar: <span id="curr"></span></span>
+                                                        <input type="text" id="credito">
+                                                    </div>
+                                                    <!-- <h4>
+                                                        Credito:
+                                                        <span id="curr"></span>
+                                                    </h4> -->
+
+                                                    <!-- <div id="price_filter" name="price_filter" data-min="0" data-max="20000" data-min-value="0" data-max-value="20000" data-price-sign="$"></div> -->
+                                            <!--         <div class="price_range">
                                                         <span>Credito: <span id="flt_price"></span></span>
                                                         <input type="hidden" id="price_first">
                                                         <input type="hidden" id="price_second">
-                                                    </div>
+                                                    </div> -->
                                                 </div>
                                             </div>
                                         </div>
@@ -262,7 +277,7 @@ require_once ("head.php");
                                 </div>
                                 <br>
                                 <div class="col-md-12">
-                                    <button type="submit" class="btn btn-fill-out" id="Btn_actualizarinformacionusuario" name="Btn_actualizarinformacionusuario" value="Submit">Actualizar Infotrmacion</button>
+                                    <button type="submit" class="btn btn-fill-out" id="Btn_actualizarinformacionusuario" name="Btn_actualizarinformacionusuario" value="Submit">Actualizar información</button>
                                 </div>
                                 </form>
                             </div>
