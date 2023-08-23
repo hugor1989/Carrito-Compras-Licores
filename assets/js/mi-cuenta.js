@@ -35,6 +35,15 @@ $("#archivocsf").change(function(e) {
 });
 
 
+var el = document.getElementById('curr');
+        var r = document.getElementById('myRange');
+        el.innerText = r.valueAsNumber;
+        r.addEventListener('change', () => {
+            el.innerText = r.valueAsNumber;
+            $("#credito").val(r.valueAsNumber);
+        })
+
+
 jQuery(function ($) {
     $('[id^=Btn_actualizarinformacionusuario]').on('click', function (e) {
         e.preventDefault();
@@ -46,7 +55,7 @@ jQuery(function ($) {
         var noempleados = $("#noempleados").val();
         var files = $("#urlpdf").val();;
         var plazopago = $("#plazopago").val();
-        var price_filter = $("#price_second").val();
+        var price_filter = $("#credito").val();
         
         
         var nameref1 = $("#nameref1").val();
