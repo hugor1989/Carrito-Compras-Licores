@@ -8,8 +8,11 @@ if( isset( $_SERVER['HTTP_X_REQUESTED_WITH'] ) && ( $_SERVER['HTTP_X_REQUESTED_W
 	$dtbs = new sql_registro();
 	$retval = [];
 
-	if($method == 'list_usarios'){
-		$list = $dtbs->list_usuarios();
+	if($method == 'obtener_informacion_usuario'){
+
+		$Id = $_POST['Id'];
+
+		$list = $dtbs->list_usuarios($Id);
 		$retval['status'] = $list[0];
 		$retval['message'] = $list[1];
 		$retval['data'] = $list[2];
@@ -44,8 +47,6 @@ if( isset( $_SERVER['HTTP_X_REQUESTED_WITH'] ) && ( $_SERVER['HTTP_X_REQUESTED_W
 		$new = $dtbs->new_registro($Negocio,$Nombre,$Apellido,$Telefono,$Email,$password);
 		$retval['status'] = $new[0];
 		$retval['message'] = $new[1];
-		//$retval['lastInsertId'] = $new[2];
-		//$retval['lastInsertIdRestaurate'] = $new[3];
 		echo json_encode($retval);
 	}
 
@@ -74,12 +75,30 @@ if( isset( $_SERVER['HTTP_X_REQUESTED_WITH'] ) && ( $_SERVER['HTTP_X_REQUESTED_W
 		echo json_encode($retval);
 	}
 
-	if($method == 'edit_registro'){
-		$Id = $_POST['Id'];
-		$Descripcion = $_POST['Descripcion'];
+	if($method == 'actualizar_perfil'){
+
+		$idUsuario = $_POST['idUsuario'] ;
+		$nosucursales = $_POST['nosucursales'];
+		$ticket = $_POST['ticket'] ;
+		$nomesas = $_POST['nomesas'] ;
+		$noempleados = $_POST['noempleados'] ;
+		$files = $_POST['files'];
+		$plazopago = $_POST['plazopago'] ;
+		$price_filter = $_POST['price_filter'] ;
+		$nameref1 = $_POST['nameref1'] ;
+		$telref1 = $_POST['telref1'] ;
+		$dirref1 = $_POST['dirref1'] ;
+		$comment1 = $_POST['comment1'] ;
+		$nameref2 = $_POST['nameref2'] ;
+		$telref2 = $_POST['telref2'] ;
+		$dirref2 = $_POST['dirref2'] ;
+		$comment2 = $_POST['comment2'] ;
+
+
+		
 		
 
-		$edit = $dtbs->edit_customer($Id,$Descripcion);
+		$edit = $dtbs->actualizar_perfil($idUsuario,$nosucursales,$ticket,$nomesas,$noempleados,$files,$plazopago,$price_filter,$nameref1,$telref1,$dirref1,$comment1,$nameref2,$telref2,$dirref2,$comment2);
 		$retval['status'] = $edit[0];
 		$retval['message'] = $edit[1];
 		echo json_encode($retval);

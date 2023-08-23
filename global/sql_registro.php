@@ -271,19 +271,22 @@ class sql_registro extends dbconn {
 						}else{
 
 
-							$_SESSION['neogcio'] = $row['usr_nombrenegocio'];
+							$_SESSION['negocio'] = $row['usr_nombrenegocio'];
 							$_SESSION['rol'] = $row['usr_idRol'];
-							$_SESSION['nombre'] = $row['usr_nombre'].' '.$row['usr_nombre'];
+							$_SESSION['nombre'] = $row['usr_nombre'].' '.$row['usr_apellidos'];
 							$_SESSION['email'] = $row['usr_email'];
 							$_SESSION['tipocosto'] = $row['usr_tipocosto'];
 							$_SESSION['sucursales'] = $row['usr_nosucursales'];
 							$_SESSION['diascredito'] = $row['usr_diascredito'];
 							$_SESSION['montocredito'] = $row['usr_montocredito'];
 							$_SESSION['status'] = $row['usr_estatus'];
+							$_SESSION['Nombre'] = $row['usr_nombre'];
+							$_SESSION['Apellido'] = $row['usr_apellidos'];
+							$_SESSION['Id'] = $row['usr_idUsuario'];
    
 							$stat[0] = true;
 							$stat[1] = "Sesion Iniciada Correctamente";
-							$stat[2] = $row['usr_nombre'].' '.$row['usr_nombre'];
+							$stat[2] = $row['usr_nombre'].' '.$row['usr_apellidos'];
 							$stat[3] = $row['EmailVerificado'];
 						}
 						 
@@ -330,6 +333,68 @@ class sql_registro extends dbconn {
 			$stat[2] = [];
 			return $stat;
 		}
+	}
+
+	public function actualizar_perfil($idUsuario,$nosucursales,$ticket,$nomesas,$noempleados,$files,$plazopago,$price_filter,$nameref1,$telref1,$dirref1,$comment1,$nameref2,$telref2,$dirref2,$comment2)
+	{
+		$db = $this->dblocal;
+		try
+		{
+
+			
+			$Estatus=2;
+
+			$stmt1 = $db->prepare("UPDATE th_usuarios set usr_nosucursales = :usr_nosucursales, usr_ticketpromedio = :usr_ticketpromedio, 
+										usr_numeromesas = :usr_numeromesas, usr_numeroempleados = :usr_numeroempleados, usr_diascredito = :usr_diascredito, 
+										usr_montocredito = :usr_montocredito, usr_archivocsf = :usr_archivocsf, usr_nombrereferencia = :usr_nombrereferencia, 
+										usr_telefonoreferencia = :usr_telefonoreferencia, usr_dirreferencia = :usr_dirreferencia, usr_comreferencia = :usr_comreferencia,
+										usr_nombrereferencia2 = :usr_nombrereferencia2, usr_telefonoreferencia2 = :usr_telefonoreferencia2,usr_dirreferencia2 = :usr_dirreferencia2,
+										usr_comreferencia2 = :usr_comreferencia2, usr_estatus = :usr_estatus  where usr_idUsuario = :usr_idUsuario ");
+			$stmt1->bindParam("usr_idUsuario",$idUsuario);
+			$stmt1->bindParam("usr_nosucursales",$nosucursales);
+			$stmt1->bindParam("usr_ticketpromedio",$ticket);
+			$stmt1->bindParam("usr_numeromesas",$nomesas);
+			$stmt1->bindParam("usr_numeroempleados",$noempleados);
+			$stmt1->bindParam("usr_diascredito",$plazopago);
+			$stmt1->bindParam("usr_montocredito",$price_filter);
+			$stmt1->bindParam("usr_archivocsf",$files);
+			$stmt1->bindParam("usr_nombrereferencia",$nameref1);
+			$stmt1->bindParam("usr_telefonoreferencia",$telref1);
+			$stmt1->bindParam("usr_dirreferencia",$dirref1);
+			$stmt1->bindParam("usr_comreferencia",$comment1);
+			$stmt1->bindParam("usr_nombrereferencia2",$nameref2);
+			$stmt1->bindParam("usr_telefonoreferencia2",$telref2);
+			$stmt1->bindParam("usr_dirreferencia2",$dirref2);
+			$stmt1->bindParam("usr_comreferencia2",$comment2);
+			$stmt1->bindParam("usr_estatus",$Estatus);
+
+			if($stmt1->execute() !== false && $stmt1->rowCount() > 0)
+			{
+				$stat[0] = true;
+				$stat[1] = "Informacion Actulizada Correctamente";
+				return $stat;
+			}else{
+				$stat[0] = true;
+				$stat[1] = "No se pudo actualizar la informacion";
+				return $stat;
+			}
+
+
+		/* 	$stmt = $db->prepare("UPDATE Categoria set Descripcion = :Descripcion where Id = :Id ");
+			$stmt->bindParam("Id",$id);
+			$stmt->bindParam("Descripcion",$descripcion);
+			$stmt->execute();
+			$stat[0] = true;
+			$stat[1] = "Success edit customer";
+			return $stat; */
+		}
+		catch(PDOException $ex)
+		{
+			$stat[0] = false;
+			$stat[1] = $ex->getMessage();
+			return $stat;
+		}
+		
 	}
 
 	public function edit_customer($id,$descripcion)
