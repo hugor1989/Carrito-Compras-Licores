@@ -1,3 +1,40 @@
+window.addEventListener('load', function() {
+    let ajax = {
+        method: "list_giro"
+    }
+    
+    $.ajax({
+        url: 'global/sp_registro.php',
+        type: "POST",
+        data: ajax,
+        success: function(response, textStatus, jqXHR)
+        {
+        
+        $respuesta = JSON.parse(response);
+            if($respuesta['status'] == true){
+    
+                
+
+                if ($respuesta['data'].length > 0) {
+                    $.each($respuesta['data'], function (key, value) {
+                        var option = $(document.createElement('option'));
+                        option.html(value.giremp_nombre);
+                        option.val(value.giremp_idGiro);
+                        $("#giroempresa")
+                            .append(option);
+                    });
+                }
+            
+            }
+        },
+        error: function (request, textStatus, errorThrown) {
+            return response.json()
+        }
+    });
+});
+
+
+
 $("#archivocsf").change(function(e) {
     //do whatever you want here
 
@@ -56,6 +93,7 @@ jQuery(function ($) {
         var files = $("#urlpdf").val();;
         var plazopago = $("#plazopago").val();
         var price_filter = $("#credito").val();
+        var giro = $("#giroempresa").val();
         
         
         var nameref1 = $("#nameref1").val();
@@ -87,7 +125,8 @@ jQuery(function ($) {
              nameref2 : nameref2,
              telref2 : telref2,
              dirref2 : dirref2,
-             comment2 : comment2
+             comment2 : comment2,
+             giro : giro
            
         } 
         
@@ -105,7 +144,7 @@ jQuery(function ($) {
 
                         Swal.fire({
                             type:'success',
-                            title:'Actualizacion de perfil',
+                            title:'Actualización de perfil',
                             text: $respuesta['message'],
                             confirmButtonColor:'#3085d6',
                             confirmButtonText:'Aceptar'
@@ -119,7 +158,7 @@ jQuery(function ($) {
 
                         Swal.fire({
                             type:'info',
-                            title:'Actualizacion de perfil',
+                            title:'Actualización de perfil',
                             text: $respuesta['message'],
                             confirmButtonColor:'#3085d6',
                             confirmButtonText:'Aceptar'

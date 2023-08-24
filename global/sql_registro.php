@@ -165,7 +165,7 @@ class sql_registro extends dbconn {
 					if($stmt1->execute() !== false && $stmt1->rowCount() > 0)
 					{
 						$stat[0] = true;
-						$stat[1] = "Verificacion Correcta";
+						$stat[1] = "Verificación Correcta";
 						return $stat;
 					}else
 					{
@@ -186,7 +186,7 @@ class sql_registro extends dbconn {
 			}else{
 
 				$stat[0] = false;
-				$stat[1] = "Codigo de verificacion incorrecto";
+				$stat[1] = "Código de verificación incorrecto";
 
 
 				return $stat;
@@ -222,13 +222,13 @@ class sql_registro extends dbconn {
 			if($stmt->rowCount() >= 1){
 
 				$stat[0] = true;
-				$stat[1] = "Email ya registrada, pavor de usar otro email";
+				$stat[1] = "ya registrado, favor de usar otro correo electrónico";
 				return $stat;
 				
 			}else{
 
 				$stat[0] = false;
-				$stat[1] = "El email de usuario es valido";
+				$stat[1] = "El email de usuario es válido";
 
 
 				return $stat;
@@ -285,7 +285,7 @@ class sql_registro extends dbconn {
 							$_SESSION['Id'] = $row['usr_idUsuario'];
    
 							$stat[0] = true;
-							$stat[1] = "Sesion Iniciada Correctamente";
+							$stat[1] = "Sesión iniciada correctamente";
 							$stat[2] = $row['usr_nombre'].' '.$row['usr_apellidos'];
 							$stat[3] = $row['EmailVerificado'];
 						}
@@ -314,6 +314,27 @@ class sql_registro extends dbconn {
 		}
 	}
 
+	public function list_giro()
+	{
+		$db = $this->dblocal;
+		try
+		{
+			$stmt = $db->prepare("SELECT * FROM th_cat_girosempresas");
+			$stmt->execute();
+			$stat[0] = true;
+			$stat[1] = "List giro";
+			$stat[2] = $stmt->fetchAll(PDO::FETCH_ASSOC);
+			return $stat;
+		}
+		catch(PDOException $ex)
+		{
+			$stat[0] = false;
+			$stat[1] = $ex->getMessage();
+			$stat[2] = [];
+			return $stat;
+		}
+	}
+
 	public function list_customer()
 	{
 		$db = $this->dblocal;
@@ -335,7 +356,7 @@ class sql_registro extends dbconn {
 		}
 	}
 
-	public function actualizar_perfil($idUsuario,$nosucursales,$ticket,$nomesas,$noempleados,$files,$plazopago,$price_filter,$nameref1,$telref1,$dirref1,$comment1,$nameref2,$telref2,$dirref2,$comment2)
+	public function actualizar_perfil($idUsuario,$nosucursales,$ticket,$nomesas,$noempleados,$files,$plazopago,$price_filter,$nameref1,$telref1,$dirref1,$comment1,$nameref2,$telref2,$dirref2,$comment2,$giro)
 	{
 		$db = $this->dblocal;
 		try
@@ -344,7 +365,7 @@ class sql_registro extends dbconn {
 			
 			$Estatus=2;
 
-			$stmt1 = $db->prepare("UPDATE th_usuarios set usr_nosucursales = :usr_nosucursales, usr_ticketpromedio = :usr_ticketpromedio, 
+			$stmt1 = $db->prepare("UPDATE th_usuarios set usr_nosucursales = :usr_nosucursales, usr_ticketpromedio = :usr_ticketpromedio, usr_giroempresa = :usr_giroempresa,
 										usr_numeromesas = :usr_numeromesas, usr_numeroempleados = :usr_numeroempleados, usr_diascredito = :usr_diascredito, 
 										usr_montocredito = :usr_montocredito, usr_archivocsf = :usr_archivocsf, usr_nombrereferencia = :usr_nombrereferencia, 
 										usr_telefonoreferencia = :usr_telefonoreferencia, usr_dirreferencia = :usr_dirreferencia, usr_comreferencia = :usr_comreferencia,
@@ -352,6 +373,7 @@ class sql_registro extends dbconn {
 										usr_comreferencia2 = :usr_comreferencia2, usr_estatus = :usr_estatus  where usr_idUsuario = :usr_idUsuario ");
 			$stmt1->bindParam("usr_idUsuario",$idUsuario);
 			$stmt1->bindParam("usr_nosucursales",$nosucursales);
+			$stmt1->bindParam("usr_giroempresa",$giro);
 			$stmt1->bindParam("usr_ticketpromedio",$ticket);
 			$stmt1->bindParam("usr_numeromesas",$nomesas);
 			$stmt1->bindParam("usr_numeroempleados",$noempleados);
@@ -371,11 +393,11 @@ class sql_registro extends dbconn {
 			if($stmt1->execute() !== false && $stmt1->rowCount() > 0)
 			{
 				$stat[0] = true;
-				$stat[1] = "Informacion Actulizada Correctamente";
+				$stat[1] = "Información actulizada correctamente";
 				return $stat;
 			}else{
 				$stat[0] = true;
-				$stat[1] = "No se pudo actualizar la informacion";
+				$stat[1] = "No se pudo actualizar la información";
 				return $stat;
 			}
 

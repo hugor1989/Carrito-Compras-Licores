@@ -145,17 +145,23 @@ require_once ("head.php");
                     			
                                 <form method="post" action="">
                                 <div class="row">
-                                    <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Nombre del negocio</label>
-                                        <input type="text" class="form-control" id="nombrenegocio" name="nombrenegocio" value="<?php echo $_SESSION['negocio']; ?>" readonly>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Nombre del negocio</label>
+                                            <input type="text" class="form-control" id="nombrenegocio" name="nombrenegocio" value="<?php echo $_SESSION['negocio']; ?>" readonly>
+                                        </div>
                                     </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Giro de la empresa</label>
+                                            <select class="form-control select2 select2" id="giroempresa" name="giroempresa"></select>               
+                                        </div>
                                     </div>
-                                    <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Contacto</label>
-                                        <input type="text" class="form-control" id="nombrecompletousr" name="nombrecompletousr" value="<?php echo $_SESSION['nombre']; ?>" readonly>
-                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Contacto</label>
+                                            <input type="text" class="form-control" id="nombrecompletousr" name="nombrecompletousr" value="<?php echo $_SESSION['nombre']; ?>" readonly>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -226,7 +232,7 @@ require_once ("head.php");
                                             
                                                     <div class="price_range">
                                                         <span>Credito a Solicitar: <span id="curr"></span></span>
-                                                        <input type="text" id="credito">
+                                                        <input type="hidden" id="credito">
                                                     </div>
                                                     <!-- <h4>
                                                         Credito:
