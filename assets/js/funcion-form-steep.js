@@ -4,8 +4,8 @@ document.querySelector('.btn-close').addEventListener('click',() => {
 
     Swal.fire({
         type:'warning',
-        title:'Estar seguro de cerrar la venta?',
-        text: 'Si cierra la ventana su verificacion de cuenta no se realizara y no se podra dar seguimiento a su alta!' ,
+        title:'Esta seguro de cerrar la venta?',
+        text: 'Si cierra la ventana su verificación de cuenta no se realizará y no se podrá dar seguimiento a su alta!' ,
         confirmButtonColor:'#3085d6',
         confirmButtonText:'Aceptar'
     }).then((result) => {
@@ -65,10 +65,10 @@ function nextPrev(n) {
         var pass = $.trim($("#password").val());
 
         Swal.fire({
-            title: "Favor de Confirmar Informacion",
+            title: "Favor de confirmar información",
             html: ' <p>Negocio: <strong>' + nombre + '</strong>.</p> ' +
                   ' <p>Nombre: <strong>' + usuario + ' ' + apellido + '</strong>.</p>' +
-                  ' <p>Telefono: <strong>' + telefono + '</strong>.</p>' +
+                  ' <p>Teléfono: <strong>' + telefono + '</strong>.</p>' +
                   ' <p>Email: <strong>' + email + '</strong>.</p>' +
                   ' <p>Password: <strong>' + pass + '</strong>.</p>' ,
             type: "info",
@@ -197,7 +197,7 @@ jQuery(function ($) {
                         Swal.fire({
                             type:'success',
                             title:'Verificacion de cuenta correcta!',
-                            text: 'Favor de seguir con las instrucciones para la activacion de la cuenta!' ,
+                            text: 'Favor de seguir con las instrucciones para la activación de la cuenta!' ,
                             confirmButtonColor:'#3085d6',
                             confirmButtonText:'Aceptar'
                         }).then((result) => {
@@ -210,7 +210,7 @@ jQuery(function ($) {
 
                         Swal.fire({
                             type:'warning',
-                            title:'Verificacion de email incorrecta!',
+                            title:'Verificación de correo electrónico incorrecta!',
                             text: 'Favor de ingresar el codigo correcto! ' +  $respuesta['message'],
                             confirmButtonColor:'#3085d6',
                             confirmButtonText:'Aceptar'
@@ -228,8 +228,6 @@ jQuery(function ($) {
 
         });
 });
-
-
 
 
       // funcion para validar que el email no este registrado en otro usuario
@@ -281,7 +279,7 @@ function validaUsuario() {
                   $(document).ready(function() {
                     Toast.fire({
                       icon: 'success',
-                      title: 'El email de usuario es valido'
+                      title: 'El correo electrónico de usuario es válido'
                     })
                   });
             }

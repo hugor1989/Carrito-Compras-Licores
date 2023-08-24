@@ -5,7 +5,7 @@ document.querySelector('.btn-close').addEventListener('click',() => {
     Swal.fire({
         type:'warning',
         title:'Estar seguro de cerrar la venta?',
-        text: 'Si cierra la ventana su verificacion de cuenta no se realizara y no se podra dar seguimiento a su alta!' ,
+        text: 'Si cierra la ventana su verificación de cuenta no se realizará y no se podrá dar seguimiento a su alta!' ,
         confirmButtonColor:'#3085d6',
         confirmButtonText:'Aceptar'
     }).then((result) => {
@@ -65,7 +65,7 @@ jQuery(function ($) {
 
                             Swal.fire({
                                 type:'warning',
-                                title:'Inicio de session no realizado',
+                                title:'Inicio de sesión no realizado',
                                 text: $respuesta['message'],
                                 confirmButtonColor:'#3085d6',
                                 confirmButtonText:'Aceptar'
@@ -80,7 +80,7 @@ jQuery(function ($) {
 
                             Swal.fire({
                                 type:'info',
-                                title:'Inicio de session no realizado',
+                                title:'Inicio de sesión no realizado',
                                 text: $respuesta['message'],
                                 confirmButtonColor:'#3085d6',
                                 confirmButtonText:'Aceptar'
