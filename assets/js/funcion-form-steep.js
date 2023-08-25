@@ -63,14 +63,14 @@ function nextPrev(n) {
         var telefono = $.trim($("#Telefono").val());
         var email = $.trim($("#Email").val());
         var pass = $.trim($("#password").val());
-
+      
         Swal.fire({
             title: "Favor de confirmar información",
-            html: ' <p>Negocio: <strong>' + nombre + '</strong>.</p> ' +
-                  ' <p>Nombre: <strong>' + usuario + ' ' + apellido + '</strong>.</p>' +
-                  ' <p>Teléfono: <strong>' + telefono + '</strong>.</p>' +
-                  ' <p>Email: <strong>' + email + '</strong>.</p>' +
-                  ' <p>Password: <strong>' + pass + '</strong>.</p>' ,
+            html: ' <p>Negocio: <strong>' + nombre + '</strong></p> ' +
+                  ' <p>Nombre: <strong>' + usuario + ' ' + apellido + '</strong></p>' +
+                  ' <p>Teléfono: <strong>' + telefono + '</strong></p>' +
+                  ' <p>Email: <strong>' + email + '</strong></p>' +
+                  ' <p>Password: <strong>' + pass + '</strong></p>' ,
             type: "info",
             showCancelButton: true,
             confirmButtonClass: "btn-primary",
@@ -87,6 +87,9 @@ function nextPrev(n) {
                  var telefonoinsert = $.trim($("#Telefono").val());
                  var emailinsert = $.trim($("#Email").val());
                  var passinsert = $.trim($("#password").val());
+                 var giro = $("#giroempresa").val();
+                 var puesto = $("#Puesto").val();
+
                  
                 let ajax = {
                     method: "new_registro",
@@ -95,7 +98,9 @@ function nextPrev(n) {
                     Apellido: apellidoinsert,
                     Telefono: telefonoinsert,
                     Email:emailinsert,
-                    Password:passinsert
+                    Password:passinsert,
+                    Giro: giro,
+                    Puesto: puesto
                 }
                 $.ajax({
                     url: 'global/sp_registro.php',
@@ -196,7 +201,7 @@ jQuery(function ($) {
 
                         Swal.fire({
                             type:'success',
-                            title:'Verificacion de cuenta correcta!',
+                            title:'Verificación de cuenta correcta!',
                             text: 'Favor de seguir con las instrucciones para la activación de la cuenta!' ,
                             confirmButtonColor:'#3085d6',
                             confirmButtonText:'Aceptar'
@@ -282,6 +287,7 @@ function validaUsuario() {
                       title: 'El correo electrónico de usuario es válido'
                     })
                   });
+                  $('#nextBtn').show('');
             }
         },
         error: function (request, textStatus, errorThrown) {
@@ -290,3 +296,38 @@ function validaUsuario() {
     });
    
 }
+
+window.addEventListener('load', function() {
+    let ajax = {
+        method: "list_giro"
+    }
+    
+    $.ajax({
+        url: 'global/sp_registro.php',
+        type: "POST",
+        data: ajax,
+        success: function(response, textStatus, jqXHR)
+        {
+        
+        $respuesta = JSON.parse(response);
+            if($respuesta['status'] == true){
+    
+                
+
+                if ($respuesta['data'].length > 0) {
+                    $.each($respuesta['data'], function (key, value) {
+                        var option = $(document.createElement('option'));
+                        option.html(value.giremp_nombre);
+                        option.val(value.giremp_idGiro);
+                        $("#giroempresa")
+                            .append(option);
+                    });
+                }
+            
+            }
+        },
+        error: function (request, textStatus, errorThrown) {
+            return response.json()
+        }
+    });
+});

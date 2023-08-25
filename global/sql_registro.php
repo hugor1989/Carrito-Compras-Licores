@@ -13,7 +13,7 @@ class sql_registro extends dbconn {
 		$this->initDBO();
 	}
 
-	public function new_registro($Negocio,$Nombre,$Apellido,$Telefono,$Email,$password)
+	public function new_registro($Negocio,$Puesto,$Nombre,$Apellido,$Telefono,$Email,$password,$Giro)
 	{
 		$db = $this->dblocal;
 		try
@@ -27,20 +27,22 @@ class sql_registro extends dbconn {
 			$rand = rand(4,100); 
 
 			//Funcione para Insertar el usuario
-			$stmt = $db->prepare("INSERT INTO th_usuarios (usr_nombrenegocio, usr_idRol, usr_fecharegistro, usr_nombre,
+			$stmt = $db->prepare("INSERT INTO th_usuarios (usr_nombrenegocio, usr_idRol, usr_fecharegistro, usr_nombre, usr_giroempresa,
 															usr_apellidos, usr_telefono, usr_puesto, usr_email, usr_usuario, usr_contrasena, CodigoVerificacion) 
-										values (:usr_nombrenegocio, :usr_idRol, :usr_fecharegistro,:usr_nombre,:usr_apellidos, :usr_telefono, 
+										values (:usr_nombrenegocio, :usr_idRol, :usr_fecharegistro,:usr_nombre, :usr_giroempresa ,:usr_apellidos, :usr_telefono, 
 												:usr_puesto,:usr_email, :usr_usuario, :usr_contrasena, :CodigoVerificacion )");
 			$stmt->bindParam("usr_nombrenegocio",$Negocio);
 			$stmt->bindParam("usr_idRol",$activo);
+			$stmt->bindParam("usr_giroempresa",$Giro);
 			$stmt->bindParam("usr_fecharegistro",$hoy);
 			$stmt->bindParam("usr_nombre",$Nombre);
 			$stmt->bindParam("usr_apellidos",$Apellido);
 			$stmt->bindParam("usr_telefono",$Telefono);
-			$stmt->bindParam("usr_puesto",$activo);
+			$stmt->bindParam("usr_puesto",$Puesto);
 			$stmt->bindParam("usr_email",$Email);
 			$stmt->bindParam("usr_usuario",$Email);
 			$stmt->bindParam("usr_contrasena",$password);
+			$stmt->bindParam("CodigoVerificacion",$rand);
 			$stmt->bindParam("CodigoVerificacion",$rand);
 			$stmt->execute();
 			$lastInsertId = $db->lastInsertId();

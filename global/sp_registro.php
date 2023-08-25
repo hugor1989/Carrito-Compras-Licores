@@ -38,13 +38,15 @@ if( isset( $_SERVER['HTTP_X_REQUESTED_WITH'] ) && ( $_SERVER['HTTP_X_REQUESTED_W
 
 		$Negocio = $_POST['Negocio'];
 		$Nombre = $_POST['Nombre'];
+		$Puesto = $_POST['Puesto'];
 		$Apellido = $_POST['Apellido'];
 		$Telefono = $_POST['Telefono'];
 		$Email = $_POST['Email'];
 		$password = $_POST['Password'];
+		$Giro = $_POST['Giro'];
 		
 
-		$new = $dtbs->new_registro($Negocio,$Nombre,$Apellido,$Telefono,$Email,$password);
+		$new = $dtbs->new_registro($Negocio,$Puesto,$Nombre,$Apellido,$Telefono,$Email,$password,$Giro);
 		$retval['status'] = $new[0];
 		$retval['message'] = $new[1];
 		echo json_encode($retval);

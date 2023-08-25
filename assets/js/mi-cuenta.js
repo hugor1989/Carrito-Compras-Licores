@@ -93,7 +93,7 @@ jQuery(function ($) {
         var files = $("#urlpdf").val();;
         var plazopago = $("#plazopago").val();
         var price_filter = $("#credito").val();
-        var giro = $("#giroempresa").val();
+        
         
         
         var nameref1 = $("#nameref1").val();
