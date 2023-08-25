@@ -47,7 +47,12 @@ require_once ("head.php");
                                 <!-- end step indicators -->
                             
                                 <!-- step one -->
-                                
+                                <div class="step">
+                                    <p class="text-center mb-4">Nombre Comercial</p>
+                                    <div class="mb-3">
+                                        <input type="text" required="" class="form-control" id="name" name="name" placeholder="Ingresar Nombre">
+                                    </div>
+                                </div>
                                 <!-- step two -->
                                 <div class="step">
                                     <p class="text-center mb-4">Informacion de Contacto</p>
@@ -56,6 +61,12 @@ require_once ("head.php");
                                     </div>
                                     <div class="mb-3">
                                         <input type="text" placeholder="Apellido" oninput="this.className = ''" name="Apellido" id="Apellido">
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="form-group">
+                                            <label>Giro de la empresa</label>
+                                            <select class="form-control select2 select2" id="giroempresa" name="giroempresa"></select>               
+                                        </div>
                                     </div>
                                     <div class="mb-3">
                                     

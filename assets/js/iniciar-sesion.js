@@ -50,7 +50,7 @@ jQuery(function ($) {
                         Swal.fire({
                             type:'success',
                             title:$respuesta['message'],
-                            text: 'Bienvenido a tu espacio ' + $respuesta['usuario'] ,
+                            text: 'Bienvenid@ ' + $respuesta['usuario'] ,
                             confirmButtonColor:'#3085d6',
                             confirmButtonText:'Aceptar'
                         }).then((result) => {
