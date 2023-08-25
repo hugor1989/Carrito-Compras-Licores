@@ -39,11 +39,13 @@ $("#archivocsf").change(function(e) {
     //do whatever you want here
 
     var files = document.getElementById("archivocsf").files;
+    var code = $("#code").val();
 
     if(files.length > 0 ){
 
          var formData = new FormData();
          formData.append("file", files[0]);
+         formData.append("coding",code);
 
          var xhttp = new XMLHttpRequest();
 
@@ -76,7 +78,7 @@ var el = document.getElementById('curr');
         var r = document.getElementById('myRange');
         el.innerText = r.valueAsNumber;
         r.addEventListener('change', () => {
-            el.innerText = r.valueAsNumber;
+            el.innerText = new Intl.NumberFormat('es-MX').format(r.valueAsNumber.toFixed(0));;
             $("#credito").val(r.valueAsNumber);
         })
 
@@ -93,7 +95,7 @@ jQuery(function ($) {
         var files = $("#urlpdf").val();;
         var plazopago = $("#plazopago").val();
         var price_filter = $("#credito").val();
-        
+        var giro = $("#giroempresa").val();
         
         
         var nameref1 = $("#nameref1").val();
@@ -145,7 +147,7 @@ jQuery(function ($) {
                         Swal.fire({
                             type:'success',
                             title:'Actualización de perfil',
-                            text: $respuesta['message'],
+                            text: 'Información actualizada correctamente',
                             confirmButtonColor:'#3085d6',
                             confirmButtonText:'Aceptar'
                         }).then((result) => {

@@ -1,5 +1,12 @@
 <?php 
 require_once ("head.php");
+
+$longitud = 5;
+$key = "";
+$pattern = '1234567890abcdefghijklmnopqrstuvwxyz';
+$max = strlen($pattern)-1;
+for($i=0;$i < $longitud;$i++) $key .= $pattern[mt_rand(0,$max)];
+
 ?>
 <!-- START SECTION BREADCRUMB -->
 <div class="breadcrumb_section bg_gray page-title-mini">
@@ -42,7 +49,7 @@ require_once ("head.php");
                         <a class="nav-link" id="address-tab" data-bs-toggle="tab" href="#address" role="tab" aria-controls="address" aria-selected="true"><i class="ti-location-pin"></i>Mis Direcciones</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link " id="account-detail-tab" data-bs-toggle="tab" href="#account-detail" role="tab" aria-controls="account-detail" aria-selected="true"><i class="ti-id-badge"></i>Detalle Cuenta</a>
+                        <a class="nav-link " id="account-detail-tab" data-bs-toggle="tab" href="#account-detail" role="tab" aria-controls="account-detail" aria-selected="true"><i class="ti-id-badge"></i>Detalle de Cuenta</a>
                       </li>
                       <li class="nav-item">
                         <a class="nav-link" href="salir.php"><i class="ti-lock"></i>Cerrar Session</a>
@@ -204,6 +211,7 @@ require_once ("head.php");
                                                 <div class="input-group">
                                                     <div class="custom-file">
                                                         <input type="hidden" id="urlpdf" name="urlpdf">
+                                                        <input type="hidden" id="code" value="<?php echo $key ?>"  name="code">
                                                         <input class="custom-file-input" type="file" id="archivocsf" name="archivocsf" accept=".pdf" required>
                                                     </div>
                                                 </div> 
@@ -219,7 +227,7 @@ require_once ("head.php");
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <div class="form-group">
                                             <div class="widget">
                                                 <h5 class="widget_title">Monto a Solicitar</h5>

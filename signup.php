@@ -146,9 +146,9 @@ require_once ("head.php");
                         <div class="popup_content">
                             <div class="popup-text">
                                 <div class="heading_s1">
-                                    <h4>Verificacion de Cuenta</h4>
+                                    <h4>Verificación de Cuenta</h4>
                                 </div>
-                                <p>Favor de ingresar el codigo para verificar su cuenta de email.</p>
+                                <p>Favor de ingresar el código para verificar tu cuenta de email. No olvides revisar en tu bandeja de SPAM o Correo no deseado.</p>
                             </div>
                             <form method="post">
                                 <input type="hidden" id="emailusuario" name="emailusuario">
