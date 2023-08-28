@@ -52,6 +52,24 @@ if( isset( $_SERVER['HTTP_X_REQUESTED_WITH'] ) && ( $_SERVER['HTTP_X_REQUESTED_W
 		echo json_encode($retval);
 	}
 
+	if($method == 'agregar_sucursal'){
+
+		$idCliente = $_POST['idCliente'];
+        $nombresucursal = $_POST['nombresucursal'];
+        $contactosuc = $_POST['contactosuc'];
+        $telefonosuc = $_POST['telefonosuc'];
+        $emailsuc = $_POST['emailsuc'];
+        $direccion = $_POST['direccion'];
+        $latitud = $_POST['latitud'];
+        $longitud = $_POST['longitud'];
+
+
+		$new = $dtbs->agregar_sucursal($idCliente,$nombresucursal,$contactosuc,$telefonosuc,$emailsuc,$direccion,$latitud,$longitud);
+		$retval['status'] = $new[0];
+		$retval['message'] = $new[1];
+		echo json_encode($retval);
+	}
+
 	if($method == 'verificar_cuenta'){
 
 		
@@ -107,6 +125,17 @@ if( isset( $_SERVER['HTTP_X_REQUESTED_WITH'] ) && ( $_SERVER['HTTP_X_REQUESTED_W
 
 	if($method == 'list_giro'){
 		$list = $dtbs->list_giro();
+		$retval['status'] = $list[0];
+		$retval['message'] = $list[1];
+		$retval['data'] = $list[2];
+		echo json_encode($retval);
+	}
+	if($method == 'list_sucursales'){
+
+		$idUsuario = $_POST['idUsuario'] ;
+
+		$list = $dtbs->list_sucursales($idUsuario);
+		
 		$retval['status'] = $list[0];
 		$retval['message'] = $list[1];
 		$retval['data'] = $list[2];
