@@ -1,6 +1,28 @@
 window.addEventListener('load', function() {
+
+
+
+   /*    
+      teamDataOne.forEach(function(result,i){
+        if(i == 0){
+          //add start row 
+          content+= `<div class="row">`
+        }
+        // add content
+        content += ` <div class="col-lg-6"><div class="card"><div class="card-header"><h3>${result.position}</h3></div><div class="card-body"><address>House #15<br>Road #1<br>Block #C <br>Angali <br> Vedora <br>1212</address><p>New York</p><a href="#" class="btn btn-fill-out">Edit</a></div></div></div>`
+      
+      
+      
+      });
+      // after looping dont forget to close the last row 
+      content += `</div><div class="row"></div>`
+      container.innerHTML += content;
+ */
+
+    var idUsuario = $("#idUsuario").val();
     let ajax = {
-        method: "list_giro"
+        method: "list_sucursales",
+        idUsuario: idUsuario
     }
     
     $.ajax({
@@ -9,20 +31,61 @@ window.addEventListener('load', function() {
         data: ajax,
         success: function(response, textStatus, jqXHR)
         {
-        
-        $respuesta = JSON.parse(response);
+            var container = document.getElementById("address");
+            var content=``; 
+          //  console.log(response);   
+            $respuesta = JSON.parse(response);
             if($respuesta['status'] == true){
     
                 
 
                 if ($respuesta['data'].length > 0) {
+
+
+
+                                
+              /*   teamDataOne.forEach(function(result,i){
+                    if(i == 0){
+                    //add start row 
+                    content+= `<div class="row">`
+                    }
+                    // add content
+                    content += ` <div class="col-lg-6"><div class="card"><div class="card-header"><h3>${result.position}</h3></div><div class="card-body"><address>House #15<br>Road #1<br>Block #C <br>Angali <br> Vedora <br>1212</address><p>New York</p><a href="#" class="btn btn-fill-out">Edit</a></div></div></div>`
+                
+                
+                
+                }); */
+                // after looping dont forget to close the last row 
+               
+
+
+
+
                     $.each($respuesta['data'], function (key, value) {
-                        var option = $(document.createElement('option'));
-                        option.html(value.giremp_nombre);
-                        option.val(value.giremp_idGiro);
-                        $("#giroempresa")
-                            .append(option);
+
+                        if(key == 0){
+                            //add start row 
+                            content+= `<div class="row">`
+                        }
+                        content += ` <div class="col-lg-6">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h3>Sucursal: ${value.suc_nombresucursal}</h3>
+                                            </div>
+                                        <div class="card-body">
+                                            <address>Direccion:${value.suc_direccion}</address>
+                                            <p>Contacto:${value.suc_contactosucursal}</p>
+                                            <p>Telefono:${value.suc_telefono}</p>
+                                            <p>Email:${value.suc_email}</p>
+                                           
+                                        </div>
+                                    </div></div>`
+                        /* console.log(key);
+                        console.log(value); */
+                    
                     });
+                    content += `</div><div class="row"></div>`
+                    container.innerHTML += content;
                 }
             
             }
@@ -79,7 +142,7 @@ var el = document.getElementById('curr');
         el.innerText = r.valueAsNumber;
         r.addEventListener('change', () => {
             el.innerText = new Intl.NumberFormat('es-MX').format(r.valueAsNumber.toFixed(0));;
-            $("#credito").val(r.valueAsNumber);
+            $("#credito").val("$"+r.valueAsNumber);
         })
 
 
@@ -139,7 +202,7 @@ jQuery(function ($) {
                 data: ajax,
                 success: function(response, textStatus, jqXHR)
                 {
-                console.log(response);
+              //  console.log(response);
                     $respuesta = JSON.parse(response);
                 // console.log(response);
                     if($respuesta['status'] == true){
@@ -179,57 +242,89 @@ jQuery(function ($) {
 
         });
 });
-$(function () {
 
-    // console.log(password);
+// funcion para registrar una nueva sucursal de cliente
+function generarSucursal() {
+    var idCliente=$('#IdCliente').val();
+    var nombresucursal=$('#nombresucursal').val();
+    var contactosuc=$('#contactosuc').val();
+    var telefonosuc=$('#telefonosuc').val();
+    var emailsuc=$('#emailsuc').val();
+    var direccion=$('#direccion').val();
+    var latitud=$('#latitud').val();
+    var longitud=$('#longitud').val();
 
-   /* let ajax = {
-        method: "obtener_informacion_usuario",
-        Email: email,
-        Password: password,
+if (idCliente==idCliente){
+
+    let ajax = {
+        method: "agregar_sucursal",
+        idCliente : idCliente,
+        nombresucursal : nombresucursal,
+        contactosuc : contactosuc,
+        telefonosuc : telefonosuc,
+        emailsuc : emailsuc,
+        direccion : direccion,
+        latitud : latitud,
+        longitud : longitud
        
-    }
+    } 
+    
 
-	$.ajax({
+         $.ajax({
+            url: 'global/sp_registro.php',
+            type: "POST",
+            data: ajax,
+            success: function(response, textStatus, jqXHR)
+            {
+           // console.log(response);
+                $respuesta = JSON.parse(response);
+            // console.log(response);
+                if($respuesta['status'] == true){
 
-        url: 'global/sp_registro.php',
-		method: "POST",
-		data: ajax,
-		cache: false,
-		contentType: false,
-		processData: false,
-		dataType: "json",
-		success: function(respuesta){
-			//console.log(respuesta["Id"]);
-			$("#editarDescripcion").val(respuesta["Descripcion"]);
-			$("#editarRFC").val(respuesta["RFC"]);
-			$("#editarCuotaBasica").val(respuesta["VT"]);
-			$("#editarCuota_Rot").val(respuesta["Cuota_Rot"]);
-			$("#editarCuota_TR").val(respuesta["Cuota_TR"]);
-			$("#editarCuota_Contenedor").val(respuesta["Cuota_Contenedor"]);
-			$("#editarTelefono").val(respuesta["Telefono"]);
-			$("#editarDireccion").val(respuesta["Direccion"]);
-			$("#editarPoliza").val(respuesta["NumeroPoliza"]);
-			$("#id").val(respuesta["Id"]);
+                    Swal.fire({
+                        type:'success',
+                        title:$respuesta['message'],
+                        text: '',
+                        confirmButtonColor:'#3085d6',
+                        confirmButtonText:'Aceptar'
+                    }).then((result) => {
+                        if(result.value){
+                            window.location.href = "mi-cuenta.php";
+                        }
+                    })
+                
+                }else if ($respuesta['status'] == false){
 
-			//Aqui valido la url de la imagen que no venga vacia, si viene vacia, no cambio, si viene muestro imagen
-			if(respuesta["CondicionesGenerales"] != ""){
-
-				$("#rutaactualpdf").val(respuesta["CondicionesGenerales"]);
-			}
-			
-			//Aqui valido la url de la imagen que no venga vacia, si viene vacia, no cambio, si viene muestro imagen
-			if(respuesta["Logo"] != ""){
-
-				$("#rutaactual").val(respuesta["Logo"]);
-
-				var baseStr64 = respuesta["Logo"];
-				img_tag_id.setAttribute('src', "data:image/jpg;base64," + baseStr64);
-				//$("#img_tag_id").attr('src', 'data:image/*;base64,' + respuesta["Logo"]);
-				//$("#img_tag_id").attr("src",respuesta["Logo"])
-			}
-			
-		}
-
-	}); */
-});
+                    Swal.fire({
+                        type:'info',
+                        title:$respuesta['message'],
+                        text: '',
+                        confirmButtonColor:'#3085d6',
+                        confirmButtonText:'Aceptar'
+                    }).then((result) => {
+                        if(result.value){
+                            //$("#verificar-popup").modal('show', {}, 500);
+                        }
+                    })
+                   
+                }
+            },
+            error: function (request, textStatus, errorThrown) {
+                return response.json()
+            }
+        }); 
+} else {
+      var Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000
+      });
+      $(document).ready(function() {
+      Toast.fire({
+      icon: 'error',
+      title: 'No se establecio un cliente'
+      })
+    });
+  } 
+}

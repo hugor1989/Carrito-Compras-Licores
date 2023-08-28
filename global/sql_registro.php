@@ -337,6 +337,39 @@ class sql_registro extends dbconn {
 		}
 	}
 
+	public function list_sucursales($idUsuario)
+	{
+		$db = $this->dblocal;
+		try
+		{
+
+			$item="suc_idCliente";
+
+			$stmt = $db->prepare("SELECT * FROM th_usuariossucursales WHERE suc_idCliente=$idUsuario");
+
+			//$stmt -> bindParam(":".$item, $idUsuario);
+
+			$stmt -> execute();
+
+			$resultado = $stmt -> fetchAll();
+
+		/* 	$stmt = $db->prepare("SELECT * FROM th_usuariossucursales WHERE suc_idCliente=$idUsuario");
+			$stmt->execute();
+ */
+
+			$stat[0] = true;
+			$stat[1] = "List sucursales";
+			$stat[2] = $resultado;
+			return $stat;
+		}
+		catch(PDOException $ex)
+		{
+			$stat[0] = false;
+			$stat[1] = $ex->getMessage();
+			$stat[2] = [];
+			return $stat;
+		}
+	}
 	public function list_customer()
 	{
 		$db = $this->dblocal;
@@ -419,6 +452,59 @@ class sql_registro extends dbconn {
 			return $stat;
 		}
 		
+	}
+
+	public function agregar_sucursal($idCliente,$nombresucursal,$contactosuc,$telefonosuc,$emailsuc,$direccion,$latitud,$longitud)
+	{
+		$db = $this->dblocal;
+		try
+		{
+			
+			$activo = 1;
+			
+
+			//Funcione para Insertar el usuario
+			$stmt = $db->prepare("INSERT INTO th_usuariossucursales (suc_idCliente, suc_nombresucursal, suc_contactosucursal, suc_telefono, suc_email,
+																	 suc_direccion, suc_latitud, suc_longitud, suc_estatus) 
+										values (:suc_idCliente, :suc_nombresucursal, :suc_contactosucursal, :suc_telefono, :suc_email ,:suc_direccion, :suc_latitud, 
+												:suc_longitud,:suc_estatus )");
+			$stmt->bindParam("suc_idCliente",$idCliente);
+			$stmt->bindParam("suc_nombresucursal",$nombresucursal);
+			$stmt->bindParam("suc_contactosucursal",$contactosuc);
+			$stmt->bindParam("suc_telefono",$telefonosuc);
+			$stmt->bindParam("suc_email",$emailsuc);
+			$stmt->bindParam("suc_direccion",$direccion);
+			$stmt->bindParam("suc_latitud",$latitud);
+			$stmt->bindParam("suc_longitud",$longitud);
+			$stmt->bindParam("suc_estatus",$activo);
+			
+			$stmt->execute();
+			$lastInsertId = $db->lastInsertId();
+			
+
+			if($lastInsertId > 0){
+
+				$stat[0] = true;
+				$stat[1] = "Sucursal agregada correctamente";
+			return $stat;
+			}else{
+
+				$stat[0] = false;
+				$stat[1] = "No se registro la sucursal, favor de intentar de nuevo";
+				return $stat;
+
+			}
+
+		
+			
+		}
+		catch(PDOException $ex)
+		{
+			$lastInsertId = 0;
+			$stat[0] = false;
+			$stat[1] = $ex->getMessage();
+			return $stat;
+		}
 	}
 
 	public function edit_customer($id,$descripcion)

@@ -8,6 +8,7 @@ $max = strlen($pattern)-1;
 for($i=0;$i < $longitud;$i++) $key .= $pattern[mt_rand(0,$max)];
 
 ?>
+
 <!-- START SECTION BREADCRUMB -->
 <div class="breadcrumb_section bg_gray page-title-mini">
     <div class="container"><!-- STRART CONTAINER -->
@@ -46,6 +47,9 @@ for($i=0;$i < $longitud;$i++) $key .= $pattern[mt_rand(0,$max)];
                         <a class="nav-link" id="orders-tab" data-bs-toggle="tab" href="#orders" role="tab" aria-controls="orders" aria-selected="false"><i class="ti-shopping-cart-full"></i>Pedido</a>
                       </li>
                       <li class="nav-item">
+                        <a class="nav-link" id="sucursales-tab" data-bs-toggle="tab" href="#sucursales" role="tab" aria-controls="sucursal" aria-selected="true"><i class="ti-location-pin"></i>Agregar Sucursal</a>
+                      </li>
+                      <li class="nav-item">
                         <a class="nav-link" id="address-tab" data-bs-toggle="tab" href="#address" role="tab" aria-controls="address" aria-selected="true"><i class="ti-location-pin"></i>Mis Direcciones</a>
                       </li>
                       <li class="nav-item">
@@ -80,7 +84,7 @@ for($i=0;$i < $longitud;$i++) $key .= $pattern[mt_rand(0,$max)];
                   	<div class="tab-pane fade" id="orders" role="tabpanel" aria-labelledby="orders-tab">
                     	<div class="card">
                         	<div class="card-header">
-                                <h3>Orders</h3>
+                                <h3>Mis Pedidos</h3>
                             </div>
                             <div class="card-body">
                     			<div class="table-responsive">
@@ -115,9 +119,96 @@ for($i=0;$i < $longitud;$i++) $key .= $pattern[mt_rand(0,$max)];
                             </div>
                         </div>
                   	</div>
+                      <div class="tab-pane fade" id="sucursales" role="tabpanel" aria-labelledby="sucursales-tab">
+                    	
+                        <div class="card card-default">
+                            <div class="card-header">
+                                <h3 class="card-title">Datos generales del cliente para el registro</h3>
+                                <div class="card-tools"></div>
+                            </div>
+                            <div class="card-body">
+                                <form action="" method="POST" autocomplete="off" enctype="multipart/form-data">
+                    
+                                    <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                        <label>Nombre del negocio</label>
+                                        <input id="IdCliente" name="IdCliente" type="hidden" value="<?php echo $_SESSION['Id']; ?>">
+                                        <input type="text" class="form-control" id="nombrenegocio" name="nombrenegocio" value="<?php echo $_SESSION['negocio']; ?>" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                        <label>Contacto</label>
+                                        <input type="text" class="form-control" id="nombrecompletousr" name="nombrecompletousr" value="<?php echo $_SESSION['nombre']; ?>" readonly>
+                                        </div>
+                                    </div>
+                                    </div>
+                    
+                                    <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                        <label>Nombre de la sucursal</label>
+                                        <input type="text" class="form-control" id="nombresucursal" name="nombresucursal" placeholder="Nombre con el que se identifica la sucursal. Ejemplo:  Suc. Centro">
+                                        <input type="hidden" class="form-control" id="altaSucursal" name="altaSucursal" value="altaSucursal">
+                                        <input type="hidden" class="form-control" id="idCliente" name="idCliente" value="<?php echo $idUsuario ?>">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                        <label>Contacto de sucursal</label>
+                                        <input type="text" class="form-control" id="contactosuc" name="contactosuc" placeholder="Nombre completo de la persona con la cual se puede comunicar a la sucursal">
+                                        </div>
+                                    </div>
+                                    </div>
+                    
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                            <label>Teléfono</label>
+                                            <input type="text" class="form-control" id="telefonosuc" name="telefonosuc" placeholder="Teléfono de la sucursal">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                            <label>Email (opcional)</label>
+                                            <input type="text" class="form-control" id="emailsuc" name="emailsuc" placeholder="Email de la sucursal, en caso de tenerlo">
+                                            </div>
+                                        </div>
+                                    </div>
+                    
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                <label>Dirección</label>
+                                                <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Captura la direccion de la sucursal">
+                                                <input type="hidden" class="form-control" id="latitud" name="latitud" >
+                                                <input type="hidden" class="form-control" id="longitud" name="longitud">
+                                        </div>
+                                    </div>
+                                    </div>
+                    
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                            <div id="mapasucursales"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                    
+                                    
+                                        <div class="card-footer" id="botonenviar">
+                                        <button type="button" class="btn btn-success" onclick="generarSucursal()">Generar sucursal del Cliente</button>
+                                    </div>
+                                </form>
+                            </div>
+                                
+                        </div>                                            
+                                                                                                     
+                    </div>
 					<div class="tab-pane fade" id="address" role="tabpanel" aria-labelledby="address-tab">
-                    	<div class="row">
-                        	<div class="col-lg-6">
+                    	<!-- <div class="row" id="container"> -->
+                        	 <!--<div class="col-lg-6">
                                 <div class="card mb-3 mb-lg-0">
                                     <div class="card-header">
                                         <h3>Billing Address</h3>
@@ -140,8 +231,9 @@ for($i=0;$i < $longitud;$i++) $key .= $pattern[mt_rand(0,$max)];
                                         <a href="#" class="btn btn-fill-out">Edit</a>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
+                            </div> -->
+                            
+                        <!-- </div> -->
 					</div>
                     <div class="tab-pane fade" id="account-detail" role="tabpanel" aria-labelledby="account-detail-tab">
 						<div class="card">
@@ -152,19 +244,19 @@ for($i=0;$i < $longitud;$i++) $key .= $pattern[mt_rand(0,$max)];
                     			
                                 <form method="post" action="">
                                 <div class="row">
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Nombre del negocio</label>
                                             <input type="text" class="form-control" id="nombrenegocio" name="nombrenegocio" value="<?php echo $_SESSION['negocio']; ?>" readonly>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <!-- <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Giro de la empresa</label>
                                             <select class="form-control select2 select2" id="giroempresa" name="giroempresa"></select>               
                                         </div>
-                                    </div>
-                                    <div class="col-md-4">
+                                    </div> -->
+                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Contacto</label>
                                             <input type="text" class="form-control" id="nombrecompletousr" name="nombrecompletousr" value="<?php echo $_SESSION['nombre']; ?>" readonly>
@@ -351,6 +443,49 @@ require_once ("footer.php");
 
 <!-- ./sweet -->
 <script src="sweetalert2/sweetalert2.all.min.js"></script>    
+
+<script defer src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyCc8JXHTWeK1HLEkH0-ayrxBZTBp90BPB4&callback=iniciarMap" ></script>
+<script>
+function iniciarMap(){
+    var coord = {lat:19.42847 ,lng: -99.12766};
+    var map = new google.maps.Map(document.getElementById('mapasucursales'),{
+    zoom: 12,
+    center: coord
+      });
+      var marker = new google.maps.Marker({
+                                                            position: coord,
+                                                            map: map
+                                                            });
+                                                                    
+                                                            }
+
+                                                            var searchInput = 'direccion';
+                                                            
+                                                            $(document).ready(function () {
+                                                                var autocomplete;
+                                                                autocomplete = new google.maps.places.Autocomplete((document.getElementById(searchInput)), {
+                                                                types: ['geocode'],
+                                                                componentRestrictions: {
+                                                                country: "MEX"
+                                                                }
+                                                                }); 
+                                                                google.maps.event.addListener(autocomplete, 'place_changed', function () {
+                                                                var near_place = autocomplete.getPlace();                      
+                                                                var map2 = new google.maps.Map(document.getElementById('mapasucursales'),{
+                                                                    zoom: 16,
+                                                                    center: near_place.geometry.location
+                                                                });
+                                                                var marker2 = new google.maps.Marker({
+                                                                position: near_place.geometry.location,
+                                                                map: map2
+                                                                });
+                                                                $('#latitud').val(near_place.geometry.location.lat);
+                                                                $('#longitud').val(near_place.geometry.location.lng);
+                                                                });
+                                                            });
+</script>
+                                                             
+                                                                                                                
 
 </body>
 </html>

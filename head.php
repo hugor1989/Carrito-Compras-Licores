@@ -51,6 +51,14 @@ date_default_timezone_set ('America/Mexico_City');
 
 </head>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<style>
+      #mapasucursales {
+        height: 500px;
+        width: 100%;
+      }
+</style>
+
 <body>
 
 <!-- LOADER -->
