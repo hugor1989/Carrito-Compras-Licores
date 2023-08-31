@@ -43,14 +43,12 @@ for($i=0;$i < $longitud;$i++) $key .= $pattern[mt_rand(0,$max)];
                       <li class="nav-item">
                         <a class="nav-link active" id="dashboard-tab" data-bs-toggle="tab" href="#dashboard" role="tab" aria-controls="dashboard" aria-selected="false"><i class="ti-layout-grid2"></i>Dashboard</a>
                       </li>
+                      
                       <li class="nav-item">
                         <a class="nav-link" id="orders-tab" data-bs-toggle="tab" href="#orders" role="tab" aria-controls="orders" aria-selected="false"><i class="ti-shopping-cart-full"></i>Pedido</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" id="sucursales-tab" data-bs-toggle="tab" href="#sucursales" role="tab" aria-controls="sucursal" aria-selected="true"><i class="ti-location-pin"></i>Agregar Sucursal</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" id="address-tab" data-bs-toggle="tab" href="#address" role="tab" aria-controls="address" aria-selected="true"><i class="ti-location-pin"></i>Mis Direcciones</a>
+                        <a class="nav-link" id="address-tab" data-bs-toggle="tab" href="#address" role="tab" aria-controls="address" aria-selected="true"><i class="ti-location-pin"></i>Mis Sucursales</a>
                       </li>
                       <li class="nav-item">
                         <a class="nav-link " id="account-detail-tab" data-bs-toggle="tab" href="#account-detail" role="tab" aria-controls="account-detail" aria-selected="true"><i class="ti-id-badge"></i>Detalle de Cuenta</a>
@@ -267,94 +265,9 @@ for($i=0;$i < $longitud;$i++) $key .= $pattern[mt_rand(0,$max)];
                             </div>
                         </div>
                   	</div>
-                      <div class="tab-pane fade" id="sucursales" role="tabpanel" aria-labelledby="sucursales-tab">
-                    	
-                        <div class="card card-default">
-                            <div class="card-header">
-                                <h3 class="card-title">Datos generales del cliente para el registro</h3>
-                                <div class="card-tools"></div>
-                            </div>
-                            <div class="card-body">
-                                <form action="" method="POST" autocomplete="off" enctype="multipart/form-data">
-                    
-                                    <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                        <label>Nombre de la empresa</label>
-                                        <input id="IdCliente" name="IdCliente" type="hidden" value="<?php echo $_SESSION['Id']; ?>">
-                                        <input type="text" class="form-control" id="nombrenegocio" name="nombrenegocio" value="<?php echo $_SESSION['negocio']; ?>" readonly>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                        <label>Contacto</label>
-                                        <input type="text" class="form-control" id="nombrecompletousr" name="nombrecompletousr" value="<?php echo $_SESSION['nombre']; ?>" readonly>
-                                        </div>
-                                    </div>
-                                    </div>
-                    
-                                    <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                        <label>Nombre de la sucursal</label>
-                                        <input type="text" class="form-control" id="nombresucursal" name="nombresucursal" placeholder="Nombre con el que se identifica la sucursal. Ejemplo:  Suc. Centro">
-                                        <input type="hidden" class="form-control" id="altaSucursal" name="altaSucursal" value="altaSucursal">
-                                        <input type="hidden" class="form-control" id="idCliente" name="idCliente" value="<?php echo $idUsuario ?>">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                        <label>Contacto de sucursal</label>
-                                        <input type="text" class="form-control" id="contactosuc" name="contactosuc" placeholder="Nombre completo de la persona con la cual se puede comunicar a la sucursal">
-                                        </div>
-                                    </div>
-                                    </div>
-                    
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                            <label>Teléfono</label>
-                                            <input type="text" class="form-control" id="telefonosuc" name="telefonosuc" placeholder="Teléfono de la sucursal">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                            <label>Email (opcional)</label>
-                                            <input type="text" class="form-control" id="emailsuc" name="emailsuc" placeholder="Email de la sucursal, en caso de tenerlo">
-                                            </div>
-                                        </div>
-                                    </div>
-                    
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                <label>Dirección</label>
-                                                <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Captura la direccion de la sucursal">
-                                                <input type="hidden" class="form-control" id="latitud" name="latitud" >
-                                                <input type="hidden" class="form-control" id="longitud" name="longitud">
-                                        </div>
-                                    </div>
-                                    </div>
-                    
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                            <div id="mapasucursales"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                    
-                                    
-                                        <div class="card-footer" id="botonenviar">
-                                        <button type="button" class="btn btn-success" onclick="generarSucursal()">Crear Sucursal</button>
-                                    </div>
-                                </form>
-                            </div>
-                                
-                        </div>                                            
-                                                                                                     
-                    </div>
+                   
 					<div class="tab-pane fade" id="address" role="tabpanel" aria-labelledby="address-tab">
+                        
                         <div class="accordion" id="accordionPanelsStayOpenExample">
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="panelsStayOpen-headingOne">
@@ -364,11 +277,94 @@ for($i=0;$i < $longitud;$i++) $key .= $pattern[mt_rand(0,$max)];
                                 </h2>
                                 <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
                                     <div class="accordion-body">
+                                    <div class="card card-default">
+                                        <div class="card-header">
+                                            <h3 class="card-title">Datos generales del cliente para el registro</h3>
+                                            <div class="card-tools">
+
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <form action="" method="POST" autocomplete="off" enctype="multipart/form-data">
+                        
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                <label>Nombre de la empresa</label>
+                                                <input id="IdCliente" name="IdCliente" type="hidden" value="<?php echo $_SESSION['Id']; ?>">
+                                                <input type="text" class="form-control" id="nombrenegocio" name="nombrenegocio" value="<?php echo $_SESSION['negocio']; ?>" readonly>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Contacto</label>
+                                                    <input type="text" class="form-control" id="nombrecompletousr" name="nombrecompletousr" value="<?php echo $_SESSION['nombre']; ?>" readonly>
+                                                </div>
+                                            </div>
+                                        </div>
+                        
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                <label>Nombre de la sucursal</label>
+                                                <input type="text" class="form-control" id="nombresucursal" name="nombresucursal" placeholder="Nombre con el que se identifica la sucursal. Ejemplo:  Suc. Centro">
+                                                <input type="hidden" class="form-control" id="altaSucursal" name="altaSucursal" value="altaSucursal">
+                                                <input type="hidden" class="form-control" id="idCliente" name="idCliente" value="<?php echo $idUsuario ?>">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Contacto de sucursal</label>
+                                                    <input type="text" class="form-control" id="contactosuc" name="contactosuc" placeholder="Nombre completo de la persona con la cual se puede comunicar a la sucursal">
+                                                </div>
+                                            </div>
+                                        </div>
+                        
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                <label>Teléfono</label>
+                                                <input type="text" class="form-control" id="telefonosuc" name="telefonosuc" placeholder="Teléfono de la sucursal">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                <label>Email (opcional)</label>
+                                                <input type="text" class="form-control" id="emailsuc" name="emailsuc" placeholder="Email de la sucursal, en caso de tenerlo">
+                                                </div>
+                                            </div>
+                                        </div>
+                        
+                                        <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label>Dirección</label>
+                                                        <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Captura la direccion de la sucursal">
+                                                        <input type="hidden" class="form-control" id="latitud" name="latitud" >
+                                                        <input type="hidden" class="form-control" id="longitud" name="longitud">
+                                                    </div>
+                                                </div>
+                                        </div>
+                        
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <div id="mapasucursales"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                        
                                         
+                                                <div class="card-footer" id="botonenviar">
+                                                    <button type="button" class="btn btn-success" onclick="generarSucursal()">Crear Sucursal</button>
+                                                </div>
+                                                </form>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> 
 					</div>
                     <div class="tab-pane fade" id="account-detail" role="tabpanel" aria-labelledby="account-detail-tab">
 						<div class="card">
@@ -588,17 +584,17 @@ function iniciarMap(){
     center: coord
       });
       var marker = new google.maps.Marker({
-                                                            position: coord,
-                                                            map: map
-                                                            });
+                                            position: coord,
+                                             map: map
+                                          });
                                                                     
-                                                            }
+}
 
-                                                            var searchInput = 'direccion';
+var searchInput = 'direccion';
                                                             
-                                                            $(document).ready(function () {
-                                                                var autocomplete;
-                                                                autocomplete = new google.maps.places.Autocomplete((document.getElementById(searchInput)), {
+$(document).ready(function () {
+        var autocomplete;
+        autocomplete = new google.maps.places.Autocomplete((document.getElementById(searchInput)), {
                                                                 types: ['geocode'],
                                                                 componentRestrictions: {
                                                                 country: "MEX"
@@ -617,6 +613,62 @@ function iniciarMap(){
                                                                 $('#latitud').val(near_place.geometry.location.lat);
                                                                 $('#longitud').val(near_place.geometry.location.lng);
                                                                 });
+
+
+   /*   var idUsuario = $("#idUsuario").val();
+    let ajax = {
+        method: "list_sucursales",
+        idUsuario: idUsuario
+    }
+    
+    $.ajax({
+        url: 'global/sp_registro.php',
+        type: "POST",
+        data: ajax,
+        success: function(response, textStatus, jqXHR)
+        {
+            var container = document.getElementById("address");
+            var content=``; 
+          //  console.log(response);   
+            $respuesta = JSON.parse(response);
+            if($respuesta['status'] == true){
+    
+                
+
+                if ($respuesta['data'].length > 0) {
+
+
+                    $.each($respuesta['data'], function (key, value) {
+
+                        if(key == 0){
+                            //add start row 
+                            content+= `<div class="row">`
+                        }
+                        content += ` <div class="col-lg-6">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h3>Sucursal: ${value.suc_nombresucursal}</h3>
+                                            </div>
+                                        <div class="card-body">
+                                            <address>Direccion:${value.suc_direccion}</address>
+                                            <p>Contacto:${value.suc_contactosucursal}</p>
+                                            <p>Telefono:${value.suc_telefono}</p>
+                                            <p>Email:${value.suc_email}</p>
+                                           
+                                        </div>
+                                    </div></div>`
+                        
+                    });
+                    content += `</div><div class="row"></div>`
+                    container.innerHTML += content;
+                }
+            
+            }
+        },
+        error: function (request, textStatus, errorThrown) {
+            return response.json()
+        }
+    }); */
                                                             });
 </script>
                                                              
