@@ -1,24 +1,5 @@
 window.addEventListener('load', function() {
 
-
-
-   /*    
-      teamDataOne.forEach(function(result,i){
-        if(i == 0){
-          //add start row 
-          content+= `<div class="row">`
-        }
-        // add content
-        content += ` <div class="col-lg-6"><div class="card"><div class="card-header"><h3>${result.position}</h3></div><div class="card-body"><address>House #15<br>Road #1<br>Block #C <br>Angali <br> Vedora <br>1212</address><p>New York</p><a href="#" class="btn btn-fill-out">Edit</a></div></div></div>`
-      
-      
-      
-      });
-      // after looping dont forget to close the last row 
-      content += `</div><div class="row"></div>`
-      container.innerHTML += content;
- */
-
     var idUsuario = $("#idUsuario").val();
     let ajax = {
         method: "list_sucursales",
@@ -42,25 +23,6 @@ window.addEventListener('load', function() {
                 if ($respuesta['data'].length > 0) {
 
 
-
-                                
-              /*   teamDataOne.forEach(function(result,i){
-                    if(i == 0){
-                    //add start row 
-                    content+= `<div class="row">`
-                    }
-                    // add content
-                    content += ` <div class="col-lg-6"><div class="card"><div class="card-header"><h3>${result.position}</h3></div><div class="card-body"><address>House #15<br>Road #1<br>Block #C <br>Angali <br> Vedora <br>1212</address><p>New York</p><a href="#" class="btn btn-fill-out">Edit</a></div></div></div>`
-                
-                
-                
-                }); */
-                // after looping dont forget to close the last row 
-               
-
-
-
-
                     $.each($respuesta['data'], function (key, value) {
 
                         if(key == 0){
@@ -80,9 +42,7 @@ window.addEventListener('load', function() {
                                            
                                         </div>
                                     </div></div>`
-                        /* console.log(key);
-                        console.log(value); */
-                    
+                        
                     });
                     content += `</div><div class="row"></div>`
                     container.innerHTML += content;
@@ -138,11 +98,20 @@ $("#archivocsf").change(function(e) {
 
 
 var el = document.getElementById('curr');
-        var r = document.getElementById('myRange');
-        el.innerText = r.valueAsNumber;
-        r.addEventListener('change', () => {
-            el.innerText = new Intl.NumberFormat('es-MX').format(r.valueAsNumber.toFixed(0));;
-            $("#credito").val("$"+r.valueAsNumber);
+var r = document.getElementById('myRange');
+el.innerText =  r.valueAsNumber;
+r.addEventListener('change', () => {
+
+            if( r.valueAsNumber > 20000){
+
+                el.innerText =  new Intl.NumberFormat('es-MX').format(r.valueAsNumber.toFixed(0)) + "+" ;
+            }else{
+
+                el.innerText =  new Intl.NumberFormat('es-MX').format(r.valueAsNumber.toFixed(0)) ;
+            }
+
+            
+            $("#credito").val(r.valueAsNumber);
         })
 
 
