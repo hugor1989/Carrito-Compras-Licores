@@ -72,7 +72,155 @@ for($i=0;$i < $longitud;$i++) $key .= $pattern[mt_rand(0,$max)];
                                 
                                 <?php if($_SESSION['status'] == 1) { ?>
 
-                                    <p>Favor de terminar el registro de tu informacion, dirigete a la seccion de Detalle Cuenta, para finalizar tu registro de informacion</a></p>
+                                    <p>Favor de terminar con el registro de la informacion, para seguir con el proceso de activacion de cuenta.</a></p>
+
+
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h3>Detalle de la Cuenta</h3>
+                                        </div>
+                                        <div class="card-body">
+                                            
+                                            <form method="post" action="">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Nombre de la empresa</label>
+                                                        <input type="text" class="form-control" id="nombrenegocio" name="nombrenegocio" value="<?php echo $_SESSION['negocio']; ?>" readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Contacto</label>
+                                                        <input type="text" class="form-control" id="nombrecompletousr" name="nombrecompletousr" value="<?php echo $_SESSION['nombre']; ?>" readonly>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Número de Sucursales</label>
+                                                    <input type="text" class="form-control" id="nosucursales" name="nosucursales" placeholder="Número de Sucursales">
+                                                    <input type="hidden" class="form-control" id="activarRegistro" name="activarRegistro" value="activarRegistro">
+                                                    <input type="hidden" class="form-control" id="idUsuario" name="idUsuario" value="<?php echo $_SESSION['Id']; ?>">
+                                                </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Ticket promedio</label>
+                                                    <input type="text" class="form-control" id="ticket" name="ticket" placeholder="Ticket promedio">
+                                                </div>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Número de mesas</label>
+                                                    <input type="text" class="form-control" id="nomesas" name="nomesas" placeholder="Número total de mesas">
+                                                </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Número de empleados</label>
+                                                    <input type="text" class="form-control" id="noempleados" name="noempleados" placeholder="Total de empleados">
+                                                </div>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Constancia de Situación Fiscal (PDF)</label>
+                                                            <div class="input-group">
+                                                                <div class="custom-file">
+                                                                    <input type="hidden" id="urlpdf" name="urlpdf">
+                                                                    <input type="hidden" id="code" value="<?php echo $key ?>"  name="code">
+                                                                    <input class="custom-file-input" type="file" id="archivocsf" name="archivocsf" accept=".pdf" required>
+                                                                </div>
+                                                            </div> 
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Plazo de pago en días</label>
+                                                    <input type="text" class="form-control" id="plazopago" name="plazopago" value="7" readonly placeholder="Dias de credito del cliente">
+                                                </div>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <div class="widget">
+                                                            <h5 class="widget_title">Monto a Solicitar</h5>
+                                                            <div class="filter_price">
+                                                            <input id="myRange"
+                                                                    step="100" 
+                                                                    max="50000"
+                                                                    type="range" 
+                                                                    class="form-range" />
+                                                        
+                                                                <div class="price_range">
+                                                                    <span>Solicitud de crédito: $<span id="curr"></span></span>
+                                                                    <input type="hidden" id="credito">
+                                                                </div>
+                                                                <!-- <h4>
+                                                                    Credito:
+                                                                    <span id="curr"></span>
+                                                                </h4> -->
+
+                                                                <!-- <div id="price_filter" name="price_filter" data-min="0" data-max="20000" data-min-value="0" data-max-value="20000" data-price-sign="$"></div> -->
+                                                        <!--         <div class="price_range">
+                                                                    <span>Credito: <span id="flt_price"></span></span>
+                                                                    <input type="hidden" id="price_first">
+                                                                    <input type="hidden" id="price_second">
+                                                                </div> -->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <br>        
+                                            <div class="row">
+                                                <legend>Referencias comerciales de la Empresa</legend>
+                                                <div class="col-md-12"> 
+                                                    <div class="form-group">
+                                                        <div class="table-responsive">
+                                                            <table class="table table-bordered" id="dynamic_field3">
+                                                            <tr>
+                                                                <td><b>Proveedor</b></td>
+                                                                <td><b>Teléfono</b></td>
+                                                                <td><b>Dirección</b></td>
+                                                                <td><b>Comentarios</b></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><input type="text" class="form-control" id="nameref1" name="nameref1" placeholder="Nombre comercial del proveedor"></td>
+                                                                <td><input type="text" class="form-control" id="telref1" name="telref1" placeholder="Teléfono de contacto"></td>
+                                                                <td><input type="text" class="form-control" id="dirref1" name="dirref1" placeholder="Dirección (Incluye calle, colonia, estado y municipio)"></td>
+                                                                <td><input type="text" class="form-control" id="comment1" name="comment1"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><input type="text" class="form-control" id="nameref2" name="nameref2" placeholder="Nombre comercial del proveedor"></td>
+                                                                <td><input type="text" class="form-control" id="telref2" name="telref2" placeholder="Teléfono de contacto"></td>
+                                                                <td><input type="text" class="form-control" id="dirref2" name="dirref2" placeholder="Dirección (Incluye calle, colonia, estado y municipio)"></td>
+                                                                <td><input type="text" class="form-control" id="comment2" name="comment2"></td>
+                                                            </tr>
+                                                            </table>
+                                                        </div>        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="col-md-12">
+                                                <button type="submit" class="btn btn-fill-out" id="Btn_actualizarinformacionusuario" name="Btn_actualizarinformacionusuario" value="Submit">Actualizar información</button>
+                                            </div>
+                                            </form>
+                                        </div>
+                                    </div>
                                 <?php }else{ ?>
 
                                     <p>Desde el panel de tu cuenta. puede verificar y ver fácilmente sus pedidos recientes, administrar sus direcciones de envío y facturación y editar su contraseña y los detalles de su cuenta</p>
@@ -132,7 +280,7 @@ for($i=0;$i < $longitud;$i++) $key .= $pattern[mt_rand(0,$max)];
                                     <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                        <label>Nombre del negocio</label>
+                                        <label>Nombre de la empresa</label>
                                         <input id="IdCliente" name="IdCliente" type="hidden" value="<?php echo $_SESSION['Id']; ?>">
                                         <input type="text" class="form-control" id="nombrenegocio" name="nombrenegocio" value="<?php echo $_SESSION['negocio']; ?>" readonly>
                                         </div>
@@ -198,7 +346,7 @@ for($i=0;$i < $longitud;$i++) $key .= $pattern[mt_rand(0,$max)];
                     
                                     
                                         <div class="card-footer" id="botonenviar">
-                                        <button type="button" class="btn btn-success" onclick="generarSucursal()">Generar sucursal del Cliente</button>
+                                        <button type="button" class="btn btn-success" onclick="generarSucursal()">Crear Sucursal</button>
                                     </div>
                                 </form>
                             </div>
@@ -207,33 +355,20 @@ for($i=0;$i < $longitud;$i++) $key .= $pattern[mt_rand(0,$max)];
                                                                                                      
                     </div>
 					<div class="tab-pane fade" id="address" role="tabpanel" aria-labelledby="address-tab">
-                    	<!-- <div class="row" id="container"> -->
-                        	 <!--<div class="col-lg-6">
-                                <div class="card mb-3 mb-lg-0">
-                                    <div class="card-header">
-                                        <h3>Billing Address</h3>
-                                    </div>
-                                    <div class="card-body">
-                                        <address>House #15<br>Road #1<br>Block #C <br>Angali <br> Vedora <br>1212</address>
-                                        <p>New York</p>
-                                        <a href="#" class="btn btn-fill-out">Edit</a>
+                        <div class="accordion" id="accordionPanelsStayOpenExample">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                                    Registro de Sucursales
+                                </button>
+                                </h2>
+                                <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+                                    <div class="accordion-body">
+                                        
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-6">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h3>Shipping Address</h3>
-                                    </div>
-                                    <div class="card-body">
-                                        <address>House #15<br>Road #1<br>Block #C <br>Angali <br> Vedora <br>1212</address>
-                                        <p>New York</p>
-                                        <a href="#" class="btn btn-fill-out">Edit</a>
-                                    </div>
-                                </div>
-                            </div> -->
-                            
-                        <!-- </div> -->
+                        </div>
 					</div>
                     <div class="tab-pane fade" id="account-detail" role="tabpanel" aria-labelledby="account-detail-tab">
 						<div class="card">
