@@ -113,11 +113,11 @@ if( isset( $_SERVER['HTTP_X_REQUESTED_WITH'] ) && ( $_SERVER['HTTP_X_REQUESTED_W
 		$telref2 = $_POST['telref2'] ;
 		$dirref2 = $_POST['dirref2'] ;
 		$comment2 = $_POST['comment2'] ;
-		$giro = $_POST['giro'] ;
+		
 
 		
 
-		$edit = $dtbs->actualizar_perfil($idUsuario,$nosucursales,$ticket,$nomesas,$noempleados,$files,$plazopago,$price_filter,$nameref1,$telref1,$dirref1,$comment1,$nameref2,$telref2,$dirref2,$comment2,$giro);
+		$edit = $dtbs->actualizar_perfil($idUsuario,$nosucursales,$ticket,$nomesas,$noempleados,$files,$plazopago,$price_filter,$nameref1,$telref1,$dirref1,$comment1,$nameref2,$telref2,$dirref2,$comment2);
 		$retval['status'] = $edit[0];
 		$retval['message'] = $edit[1];
 		echo json_encode($retval);
@@ -135,6 +135,17 @@ if( isset( $_SERVER['HTTP_X_REQUESTED_WITH'] ) && ( $_SERVER['HTTP_X_REQUESTED_W
 		$idUsuario = $_POST['idUsuario'] ;
 
 		$list = $dtbs->list_sucursales($idUsuario);
+		
+		$retval['status'] = $list[0];
+		$retval['message'] = $list[1];
+		$retval['data'] = $list[2];
+		echo json_encode($retval);
+	}
+	if($method == 'list_pruductosindex'){
+
+		
+
+		$list = $dtbs->list_pruductosindex();
 		
 		$retval['status'] = $list[0];
 		$retval['message'] = $list[1];

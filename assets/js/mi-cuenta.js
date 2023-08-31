@@ -1,6 +1,6 @@
 window.addEventListener('load', function() {
 
-    var idUsuario = $("#idUsuario").val();
+    /* var idUsuario = $("#idUsuario").val();
     let ajax = {
         method: "list_sucursales",
         idUsuario: idUsuario
@@ -53,7 +53,7 @@ window.addEventListener('load', function() {
         error: function (request, textStatus, errorThrown) {
             return response.json()
         }
-    });
+    }); */
 });
 
 
@@ -127,7 +127,7 @@ jQuery(function ($) {
         var files = $("#urlpdf").val();;
         var plazopago = $("#plazopago").val();
         var price_filter = $("#credito").val();
-        var giro = $("#giroempresa").val();
+        
         
         
         var nameref1 = $("#nameref1").val();
@@ -159,8 +159,7 @@ jQuery(function ($) {
              nameref2 : nameref2,
              telref2 : telref2,
              dirref2 : dirref2,
-             comment2 : comment2,
-             giro : giro
+             comment2 : comment2
            
         } 
         

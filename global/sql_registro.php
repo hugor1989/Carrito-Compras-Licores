@@ -347,15 +347,12 @@ class sql_registro extends dbconn {
 
 			$stmt = $db->prepare("SELECT * FROM th_usuariossucursales WHERE suc_idCliente=$idUsuario");
 
-			//$stmt -> bindParam(":".$item, $idUsuario);
-
+			
 			$stmt -> execute();
 
 			$resultado = $stmt -> fetchAll();
 
-		/* 	$stmt = $db->prepare("SELECT * FROM th_usuariossucursales WHERE suc_idCliente=$idUsuario");
-			$stmt->execute();
- */
+		
 
 			$stat[0] = true;
 			$stat[1] = "List sucursales";
@@ -391,7 +388,7 @@ class sql_registro extends dbconn {
 		}
 	}
 
-	public function actualizar_perfil($idUsuario,$nosucursales,$ticket,$nomesas,$noempleados,$files,$plazopago,$price_filter,$nameref1,$telref1,$dirref1,$comment1,$nameref2,$telref2,$dirref2,$comment2,$giro)
+	public function actualizar_perfil($idUsuario,$nosucursales,$ticket,$nomesas,$noempleados,$files,$plazopago,$price_filter,$nameref1,$telref1,$dirref1,$comment1,$nameref2,$telref2,$dirref2,$comment2)
 	{
 		$db = $this->dblocal;
 		try
@@ -400,7 +397,7 @@ class sql_registro extends dbconn {
 			
 			$Estatus=2;
 
-			$stmt1 = $db->prepare("UPDATE th_usuarios set usr_nosucursales = :usr_nosucursales, usr_ticketpromedio = :usr_ticketpromedio, usr_giroempresa = :usr_giroempresa,
+			$stmt1 = $db->prepare("UPDATE th_usuarios set usr_nosucursales = :usr_nosucursales, usr_ticketpromedio = :usr_ticketpromedio, 
 										usr_numeromesas = :usr_numeromesas, usr_numeroempleados = :usr_numeroempleados, usr_diascredito = :usr_diascredito, 
 										usr_montocredito = :usr_montocredito, usr_archivocsf = :usr_archivocsf, usr_nombrereferencia = :usr_nombrereferencia, 
 										usr_telefonoreferencia = :usr_telefonoreferencia, usr_dirreferencia = :usr_dirreferencia, usr_comreferencia = :usr_comreferencia,
@@ -408,7 +405,7 @@ class sql_registro extends dbconn {
 										usr_comreferencia2 = :usr_comreferencia2, usr_estatus = :usr_estatus  where usr_idUsuario = :usr_idUsuario ");
 			$stmt1->bindParam("usr_idUsuario",$idUsuario);
 			$stmt1->bindParam("usr_nosucursales",$nosucursales);
-			$stmt1->bindParam("usr_giroempresa",$giro);
+			
 			$stmt1->bindParam("usr_ticketpromedio",$ticket);
 			$stmt1->bindParam("usr_numeromesas",$nomesas);
 			$stmt1->bindParam("usr_numeroempleados",$noempleados);
@@ -507,43 +504,31 @@ class sql_registro extends dbconn {
 		}
 	}
 
-	public function edit_customer($id,$descripcion)
+	public function list_pruductosindex()
 	{
 		$db = $this->dblocal;
 		try
 		{
-			$stmt = $db->prepare("update Categoria set Descripcion = :Descripcion where Id = :Id ");
-			$stmt->bindParam("Id",$id);
-			$stmt->bindParam("Descripcion",$descripcion);
-			$stmt->execute();
-			$stat[0] = true;
-			$stat[1] = "Success edit customer";
-			return $stat;
-		}
-		catch(PDOException $ex)
-		{
-			$stat[0] = false;
-			$stat[1] = $ex->getMessage();
-			return $stat;
-		}
-	}
 
-	public function delete_customer($id)
-	{
-		$db = $this->dblocal;
-		try
-		{
-			$stmt = $db->prepare("delete from Categoria where Id = :Id");
-			$stmt->bindParam("Id",$id);
-			$stmt->execute();
+			
+
+			$stmt = $db->prepare("SELECT * FROM th_cat_productos ORDER BY pro_idProducto ASC limit 8");
+			$stmt -> execute();
+
+			//$resultado = $stmt -> fetchAll();
+
+		
+
 			$stat[0] = true;
-			$stat[1] = "Success delete customer";
+			$stat[1] = "List Productos";
+			$stat[2] = $stmt->fetchAll(PDO::FETCH_ASSOC);;
 			return $stat;
 		}
 		catch(PDOException $ex)
 		{
 			$stat[0] = false;
 			$stat[1] = $ex->getMessage();
+			$stat[2] = [];
 			return $stat;
 		}
 	}
