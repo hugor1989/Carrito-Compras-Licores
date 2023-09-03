@@ -4,6 +4,7 @@ require_once ("head.php");
 
 <!-- START SECTION BANNER -->
 <div class="banner_section slide_medium shop_banner_slider staggered-animation-wrap">
+    <input type="hidden" name="tipocosto" id="tipocosto" value="<?php echo $tipocost ?>">
     <div id="carouselExampleControls" class="carousel slide carousel-fade light_arrow" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active background_bg" data-img-src="assets/images/banner1.jpg">
@@ -76,47 +77,7 @@ require_once ("head.php");
         <div class="row">
         	<div class="col-12">
             	<div class="row shop_container" id="container_inicio">
-                  <!--   <div class="col-lg-3 col-md-4 col-6">
-                        <div class="product">
-                            <div class="product_img">
-                                <a href="shop-product-detail.html">
-                                     <img src="assets/images/product_img1.jpg" alt="product_img1">
-                                </a>
-                                    <div class="product_action_box">
-                                            <ul class="list_none pr_action_btn">
-                                                <li class="add-to-cart"><a href="#"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
-                                                <li><a href="shop-quick-view.html" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
-                                            </ul>
-                                    </div>
-                            </div>
-                            <div class="product_info">
-                                        <h6 class="product_title"><a href="shop-product-detail.html">Blue Dress For Woman</a></h6>
-                                        <div class="product_price">
-                                            <span class="price">$45.00</span>
-                                            <del>$55.25</del>
-                                            <div class="on_sale">
-                                                <span>35% Off</span>
-                                            </div>
-                                        </div>
-                                        <div class="rating_wrap">
-                                            <div class="rating">
-                                                <div class="product_rate" style="width:80%"></div>
-                                            </div>
-                                            <span class="rating_num">(21)</span>
-                                        </div>
-                                        <div class="pr_desc">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus blandit massa enim. Nullam id varius nunc id varius nunc.</p>
-                                        </div>
-                                        <div class="pr_switch_wrap">
-                                            <div class="product_color_switch">
-                                                <span class="active" data-color="#87554B"></span>
-                                                <span data-color="#333333"></span>
-                                                <span data-color="#DA323F"></span>
-                                            </div>
-                                        </div>
-                            </div>
-                        </div>
-                    </div> -->
+          
                 </div>
             </div>
         </div> 
@@ -310,101 +271,6 @@ require_once ("footer.php");
 <!-- scripts js --> 
 <script src="assets/js/scripts.js"></script>
 
-<script>
- 
-
-    const idcosto = "<?php echo $tipocosto ?>";
-    let ajax = {
-        method: "list_pruductosindex"
-    }
-    
-    $.ajax({
-        url: 'global/sp_registro.php',
-        type: "POST",
-        data: ajax,
-        success: function(response, textStatus, jqXHR)
-        {
-            var container = document.getElementById("container_inicio");
-            var content=``; 
-           console.log(response);   
-            $respuesta = JSON.parse(response);
-            if($respuesta['status'] == true){
-    
-                
-
-                if ($respuesta['data'].length > 0) {
-
-
-                    $.each($respuesta['data'], function (key, value) {
-
-                        var precio = 0 ;
-                        if(value.pro_preciooro == idcosto){
-
-                            precio = value.suc_nombresucursal;
-
-                        }else if(value.pro_preciopremium == idcosto){
-
-                            precio = value.suc_nombresucursal;
-
-                        }else if(value.pro_precioplatino == idcosto){
-
-                            precio = value.pro_precioplatino;
-                        }
-
-                        content += ` <div class="col-lg-3 col-md-4 col-6">
-                                            <div class="product">
-                                                <div class="product_img">
-                                                    <a href="shop-product-detail.html">
-                                                        <img src="assets/images/product_img1.jpg" alt="product_img1">
-                                                    </a>
-                                                        <div class="product_action_box">
-                                                                <ul class="list_none pr_action_btn">
-                                                                    <li class="add-to-cart"><a href="#"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
-                                                                    <li><a href="shop-quick-view.html" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
-                                                                </ul>
-                                                        </div>
-                                                </div>
-                                                <div class="product_info">
-                                                            <h6 class="product_title"><a href="shop-product-detail.html">${value.pro_nombreproducto}</a></h6>
-                                                            <div class="product_price">
-                                                                <span class="price">${precio}</span>
-                                                                <del>$55.25</del>
-                                                                <div class="on_sale">
-                                                                    <span>35% Off</span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="rating_wrap">
-                                                                <div class="rating">
-                                                                    <div class="product_rate" style="width:80%"></div>
-                                                                </div>
-                                                                <span class="rating_num">(21)</span>
-                                                            </div>
-                                                            <div class="pr_desc">
-                                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus blandit massa enim. Nullam id varius nunc id varius nunc.</p>
-                                                            </div>
-                                                            <div class="pr_switch_wrap">
-                                                                <div class="product_color_switch">
-                                                                    <span class="active" data-color="#87554B"></span>
-                                                                    <span data-color="#333333"></span>
-                                                                    <span data-color="#DA323F"></span>
-                                                                </div>
-                                                            </div>
-                                                </div>
-                                            </div>
-                                        </div>`
-                        
-                    });
-                    //content += `</div><div class="row"></div>`
-                    container.innerHTML += content;
-                }
-            
-            }
-        },
-        error: function (request, textStatus, errorThrown) {
-            return response.json()
-        }
-    });
-</script>
-
+<script src="assets/js/index.js"></script>
 </body>
 </html>
