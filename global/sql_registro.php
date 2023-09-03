@@ -510,10 +510,29 @@ class sql_registro extends dbconn {
 		try
 		{
 
-			
 
-			$stmt = $db->prepare("SELECT * FROM th_cat_productos ORDER BY pro_idProducto ASC limit 8");
+			$stmt = $db->prepare("SELECT * FROM th_cat_productos ORDER BY `pro_idProducto` DESC LIMIT 8");
+			$stmt->execute();
+			$clientes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+		/* 	$stmt = $db->prepare("SELECT * FROM th_cat_productos");
+			// Especificamos el fetch mode antes de llamar a fetch()
+			$stmt->setFetchMode(PDO::FETCH_ASSOC);
+			// Ejecutamos
+			$stmt->execute();
+
+			$row = $stmt->fetchAll(); */
+
+			/* $stmt = $db->prepare("SELECT * FROM th_cat_productos");
 			$stmt -> execute();
+ */
+/* 
+			$stmt = $dbh->prepare("SELECT * FROM Clientes");
+			// Especificamos el fetch mode antes de llamar a fetch()
+			$stmt->setFetchMode(PDO::FETCH_ASSOC);
+			// Ejecutamos
+			$stmt->execute(); */
 
 			//$resultado = $stmt -> fetchAll();
 
@@ -521,7 +540,7 @@ class sql_registro extends dbconn {
 
 			$stat[0] = true;
 			$stat[1] = "List Productos";
-			$stat[2] = $stmt->fetchAll(PDO::FETCH_ASSOC);;
+			$stat[2] = $clientes;
 			return $stat;
 		}
 		catch(PDOException $ex)
