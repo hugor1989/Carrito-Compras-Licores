@@ -75,6 +75,7 @@ $tipocosto = $_SESSION['tipocosto'];
 
 <!-- Home Popup Section -->
 <div class="modal fade subscribe_popup" id="onload-popup" tabindex="-1" role="dialog" aria-hidden="true">
+    <input type="text" id="tipocosto" name="tipocosto" value="<?php echo $tipocosto ?>">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-body">
@@ -131,9 +132,11 @@ $tipocosto = $_SESSION['tipocosto'];
                 <div class="col-md-6">
                 	<div class="text-center text-md-end">
                        	<ul class="header_list">
-                        	<!-- <li><a href="compare.html"><i class="ti-control-shuffle"></i><span>Compare</span></a></li>
-                            <li><a href="wishlist.html"><i class="ti-heart"></i><span>Wishlist</span></a></li> -->
+                            <?php if ($_SESSION['tipocosto'] == "" || $_SESSION['Id'] == "" ||  $_SESSION['Id'] == null) {?>
                             <li><a href="login.php"><i class="ti-user"></i><span>Login</span></a></li>
+                            <?php }else{ ?>
+                                <li><a href="mi-cuenta.php"><i class="ti-user"></i><span>Mi Cuenta</span></a></li>
+                            <?php }?>
 						</ul>
                     </div>
                 </div>
@@ -143,7 +146,7 @@ $tipocosto = $_SESSION['tipocosto'];
     <div class="bottom_header dark_skin main_menu_uppercase">
     	<div class="container">
             <nav class="navbar navbar-expand-lg"> 
-                <a class="navbar-brand" href="index.html">
+                <a class="navbar-brand" href="index.php">
                     <img class="logo_light" src="assets/images/Logo_thi.png" alt="logo" />
                     <img class="logo_dark" src="assets/images/Logo_thi.png" alt="logo" />
                 </a>
