@@ -40,7 +40,7 @@ window.addEventListener('load', function() {
                             precio = "" 
                         }
 
-                        var linkdetalle = "detalle-producto.php?pro_idProducto="+value.pro_idProducto;
+                        var linkdetalle = "detalle-producto.php?id="+value.pro_idProducto;
 
                         content += ` <div class="col-lg-3 col-md-4 col-6">
                                             <div class="product">

@@ -201,6 +201,7 @@ require_once ("footer.php");
 <script src="assets/js/jquery.elevatezoom.js"></script>
 <!-- scripts js --> 
 <script src="assets/js/scripts.js"></script>
-
+<!-- scripts js --> 
+<script src="assets/js/detalle-producto.js"></script>
 </body>
 </html>
