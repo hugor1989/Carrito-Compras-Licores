@@ -95,6 +95,17 @@ if( isset( $_SERVER['HTTP_X_REQUESTED_WITH'] ) && ( $_SERVER['HTTP_X_REQUESTED_W
 		echo json_encode($retval);
 	}
 
+	if($method == 'obtenerproducto_detalleId'){
+		
+		$Id = $_POST['Id'];
+
+		$new = $dtbs->obtenerproducto_detalleId($Id);
+		$retval['status'] = $new[0];
+		$retval['message'] = $new[1];
+		$retval['data'] = $new[2];
+		echo json_encode($retval);
+	}
+
 	if($method == 'actualizar_perfil'){
 
 		$idUsuario = $_POST['idUsuario'] ;
