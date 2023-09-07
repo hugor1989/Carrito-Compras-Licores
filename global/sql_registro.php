@@ -516,31 +516,39 @@ class sql_registro extends dbconn {
 			$clientes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
-		/* 	$stmt = $db->prepare("SELECT * FROM th_cat_productos");
-			// Especificamos el fetch mode antes de llamar a fetch()
-			$stmt->setFetchMode(PDO::FETCH_ASSOC);
-			// Ejecutamos
-			$stmt->execute();
-
-			$row = $stmt->fetchAll(); */
-
-			/* $stmt = $db->prepare("SELECT * FROM th_cat_productos");
-			$stmt -> execute();
- */
-/* 
-			$stmt = $dbh->prepare("SELECT * FROM Clientes");
-			// Especificamos el fetch mode antes de llamar a fetch()
-			$stmt->setFetchMode(PDO::FETCH_ASSOC);
-			// Ejecutamos
-			$stmt->execute(); */
-
-			//$resultado = $stmt -> fetchAll();
-
 		
 
 			$stat[0] = true;
 			$stat[1] = "List Productos";
 			$stat[2] = $clientes;
+			return $stat;
+		}
+		catch(PDOException $ex)
+		{
+			$stat[0] = false;
+			$stat[1] = $ex->getMessage();
+			$stat[2] = [];
+			return $stat;
+		}
+	}
+
+	public function obtenerproducto_detalleId($Id)
+	{
+		$db = $this->dblocal;
+		try
+		{
+
+
+			$consulta = "SELECT * 
+							FROM th_cat_productos 
+							WHERE pro_idProducto=$Id ";
+			$stmt = $db->prepare($consulta);
+			$stmt->execute();
+			$product = $stmt->fetch();
+
+			$stat[0] = true;
+			$stat[1] = "Producto";
+			$stat[2] = $product;
 			return $stat;
 		}
 		catch(PDOException $ex)

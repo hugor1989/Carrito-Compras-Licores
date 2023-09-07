@@ -36,7 +36,7 @@ require_once ("head.php");
             <div class="col-lg-6 col-md-6 mb-4 mb-md-0">
               <div class="product-image">
                     <div class="product_img_box">
-                        <img id="product_img" src='assets/images/product_img1.jpg' data-zoom-image="assets/images/product_zoom_img1.jpg" alt="product_img1" />
+                        <img id="product_img" name="product_img" src='assets/images/product_img1.jpg' data-zoom-image="assets/images/product_zoom_img1.jpg" alt="product_img1" />
                         <a href="#" class="product_img_zoom" title="Zoom">
                             <span class="linearicons-zoom-in"></span>
                         </a>
@@ -46,22 +46,22 @@ require_once ("head.php");
             <div class="col-lg-6 col-md-6">
                 <div class="pr_detail">
                     <div class="product_description">
-                        <h4 class="product_title"><a href="#">Blue Dress For Woman</a></h4>
+                        <h4 class="product_title" id="title_product" name="title_product"></h4>
                         <div class="product_price">
-                            <span class="price">$45.00</span>
-                            <del>$55.25</del>
-                            <div class="on_sale">
+                            <span class="price" id="precio" name="precio"></span>
+                            <!-- <del>$55.25</del> -->
+                            <!-- <div class="on_sale">
                                 <span>35% Off</span>
-                            </div>
+                            </div> -->
                         </div>
                         <div class="rating_wrap">
-                                <div class="rating">
+                               <!--  <div class="rating">
                                     <div class="product_rate" style="width:80%"></div>
                                 </div>
-                                <span class="rating_num">(21)</span>
+                                <span class="rating_num">(21)</span> -->
                             </div>
                         <div class="pr_desc">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus blandit massa enim. Nullam id varius nunc id varius nunc.</p>
+                            <p id="desc_product" name="desc_product"></p>
                         </div>
                         <div class="product_sort_info">
                             <ul>
@@ -70,22 +70,12 @@ require_once ("head.php");
                                 <li><i class="linearicons-bag-dollar"></i> Cash on Delivery available</li>
                             </ul>
                         </div>
-                        <div class="pr_switch_wrap">
+                        <!-- <div class="pr_switch_wrap">
                             <span class="switch_lable">Color</span>
                             <div class="product_color_switch">
                                 <span class="active" data-color="#87554B"></span>
                                 <span data-color="#333333"></span>
                                 <span data-color="#DA323F"></span>
-                            </div>
-                        </div>
-                    <!--     <div class="pr_switch_wrap">
-                            <span class="switch_lable">Size</span>
-                            <div class="product_size_switch">
-                                <span>xs</span>
-                                <span>s</span>
-                                <span>m</span>
-                                <span>l</span>
-                                <span>xl</span>
                             </div>
                         </div> -->
                     </div>
@@ -99,15 +89,15 @@ require_once ("head.php");
                             </div>
                         </div>
                         <div class="cart_btn">
-                            <button class="btn btn-fill-out btn-addtocart" type="button"><i class="icon-basket-loaded"></i> Aregar a Carrito</button>
-                            <a class="add_compare" href="#"><i class="icon-shuffle"></i></a>
-                            <a class="add_wishlist" href="#"><i class="icon-heart"></i></a>
+                            <button class="btn btn-fill-out btn-addtocart" type="button"><i class="icon-basket-loaded"></i> Agregar a Carrito</button>
+                          <!--   <a class="add_compare" href="#"><i class="icon-shuffle"></i></a>
+                            <a class="add_wishlist" href="#"><i class="icon-heart"></i></a> -->
                         </div>
                     </div>
                     <hr />
                     <ul class="product-meta">
-                        <li>SKU: <a href="#">BE45VGRT</a></li>
-                        <li>Category: <a href="#">Clothing</a></li>
+                        <li>SKU: <a href="#" id="sku" name="sku"></a></li>
+                        <li>Categoria: <a href="#" id="categoria" name="categoria"></a></li>
                         <!-- <li>Tags: <a href="#" rel="tag">Cloth</a>, <a href="#" rel="tag">printed</a> </li> -->
                     </ul>
                     
@@ -139,8 +129,7 @@ require_once ("head.php");
                     </ul>
                 	<div class="tab-content shop_info_tab">
                       	<div class="tab-pane fade show active" id="Description" role="tabpanel" aria-labelledby="Description-tab">
-                        	<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Vivamus bibendum magna Lorem ipsum dolor sit amet, consectetur adipiscing elit.Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</p>
-                        	<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.</p>
+                        	<p id="descripcion" name="descripcion"></p>
                       	</div>
                 	</div>
                 </div>
